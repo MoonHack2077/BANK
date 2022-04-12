@@ -4,17 +4,23 @@
  */
 package Vistas;
 
+import Controladores.ControladorBanco;
+
 /**
  *
  * @author USER
  */
 public class VistaBanco extends javax.swing.JFrame {
 
+    public static ControladorBanco CB = new ControladorBanco();
+;
+    
     /**
      * Creates new form VistaBanco
      */
     public VistaBanco() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -29,11 +35,10 @@ public class VistaBanco extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnClientes = new javax.swing.JButton();
         btnCreditos = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "BIENVENIDO AL SISTEMA", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         btnClientes.setText("GESTIONAR CLIENTES");
         btnClientes.addActionListener(new java.awt.event.ActionListener() {
@@ -49,8 +54,6 @@ public class VistaBanco extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("BIENVENIDO AL SISTEMA");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -61,17 +64,11 @@ public class VistaBanco extends javax.swing.JFrame {
                     .addComponent(btnCreditos)
                     .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(89, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(49, 49, 49)
+                .addGap(55, 55, 55)
                 .addComponent(btnClientes)
                 .addGap(67, 67, 67)
                 .addComponent(btnCreditos)
@@ -83,16 +80,16 @@ public class VistaBanco extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(37, 37, 37)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(17, 17, 17)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -148,7 +145,6 @@ public class VistaBanco extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnCreditos;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
