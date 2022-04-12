@@ -12,13 +12,13 @@ import java.util.Date;
  */
 public class Cuota {
     private boolean pagada;
-    private double monto;
+    private double montoAbonado;
     private int numeroCuota;
     private Date fechaCancelacion;
     
     public Cuota(Date fechaCancelacion, int numeroCuota, double monto){
         this.fechaCancelacion = fechaCancelacion;
-        this.monto = monto;
+        this.montoAbonado = monto;
         this.numeroCuota = numeroCuota;
         this.pagada = true;
     }
@@ -68,14 +68,14 @@ public class Cuota {
     /**
      * @return the monto
      */
-    public double getMonto() {
-        return monto;
+    public double getMontoAbonado() {
+        return montoAbonado;
     }
 
     /**
      * @param monto the monto to set
      */
-    public void setMonto(double monto) {
-        this.monto = monto;
+    public void setMontoAbonado(double montoAbonado) {
+        this.montoAbonado = montoAbonado;
     }
 }
