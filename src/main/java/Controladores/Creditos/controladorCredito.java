@@ -20,7 +20,7 @@ public abstract class ControladorCredito {
     
     public ControladorCredito( Credito credito ){
         cuotas = new Cuota[credito.getCantidadCuotas()];
-        this.valorSolicitado = credito.getMontoTotal();
+        this.valorSolicitado = credito.getValorCuota();
         this.numeroContrato = credito.getNumeroDeContrato();
         cB = new ControladorBanco();
     }
@@ -32,10 +32,39 @@ public abstract class ControladorCredito {
     public abstract double calcularValorCuota();
     
     
-    public boolean pagarCuota(){
+    /**
+     * Metodo para abonar una cuota
+     * @param cuota
+     * @return true si se abonó, de lo contrario false
+     */
+    public boolean abonarCuota(Cuota cuota){
         
+        //LOOK OUT THIS PART
+        if( cuota.getMonto() < this.calcularValorCuota() ) return false;
+        
+        for (int i = 0; i < cuotas.length; i++) {
+            if( cuotas[i] == null ){
+                cuotas[i] = cuota;
+                return true;
+            } 
+        }
         
         return false;
+    }
+    
+    /**
+     * Metodo para saber la cantidad de cuotas restantes
+     * @return la cantidad de cuotas restantes
+     */
+    public int cuotasRestantes(){
+        int contador = 0;
+        for (int i = 0; i < cuotas.length; i++) {
+            if( cuotas[i] == null ){
+                contador++;
+            } 
+        }
+        
+        return contador;
     }
 
     /**

@@ -11,7 +11,9 @@ package Modelos.Datos;
 public class Domicilio extends Datos {
     private double avaluoComercial;
     
-    public Domicilio( double avaluoComercial, String direccion, int estrato, String nombre, int documentoTitular ){
+    public Domicilio( double avaluoComercial, String direccion, int estrato, 
+            String nombre, int documentoTitular )
+    {
         super(direccion, estrato, nombre, documentoTitular);
         this.avaluoComercial = avaluoComercial;
     }

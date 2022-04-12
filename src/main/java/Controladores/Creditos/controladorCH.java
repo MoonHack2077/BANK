@@ -12,20 +12,22 @@ import Modelos.Creditos.CreditoHipotecario;
  * @author USER
  */
 public abstract class ControladorCH extends ControladorCredito{
-    
     public ControladorCH( Credito credito ){
         super(credito);
+
     }
     
-    public 
-    
     @Override
-    double calcularValorCuota(){
+    public double calcularValorCuota(){
         CreditoHipotecario creditoH = this.cB.buscarCreditoH(this.getNumeroContrato());
         int estrato = creditoH.getDomicilio().getEstrato();
-        double bonificacion = 1;
-        if( estrato<=3 ) bonificacion+= 0.2;
-        else bonificacion+= 0.4;
-        return 0;
+        double valorTotal = creditoH.getValorCuota();
+        
+        if( estrato<=3 ) valorTotal+= 0.2;
+        else valorTotal+= 0.4;
+        
+        creditoH.setValorCuota(valorTotal);
+        
+        return valorTotal;
     }
 }

@@ -5,6 +5,7 @@
 package Controladores.Creditos;
 
 import Modelos.Creditos.Credito;
+import Modelos.Creditos.CreditoLibre;
 
 /**
  *
@@ -17,13 +18,15 @@ public abstract class ControladorCL extends ControladorCredito {
         super(credito);
     }
     
-    public 
-    
     @Override
-    double calcularValorCuota(){
-        
-        
-        return 0;
+    public double calcularValorCuota(){
+        CreditoLibre creditoL = this.cB.buscarCreditoL(this.getNumeroContrato());
+        int valorData = creditoL.getValorDataCredito();
+        double valorTotal = creditoL.getValorCuota();
+        if( valorData>=250 && valorData<=320 ) valorTotal+= 1.6;
+        else valorTotal+= 1.9;
+        creditoL.setValorCuota(valorTotal);
+        return valorTotal;
     }
     
 }

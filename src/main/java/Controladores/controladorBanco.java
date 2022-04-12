@@ -31,6 +31,14 @@ public class ControladorBanco {
     /************** CRUD DE CLIENTES ***************/
     
     /**
+     * Metodo para generar un valor de data credito entre 250 y 400
+     * @return 
+     */
+    public int generarValorDataCredito(){
+        return (int)Math.floor(Math.random()*(400 - 250 + 1)+250 );
+    }
+    
+    /**
      * Metodo para saber si un cliente ya está almacenado
      * @param documento
      * @return cliente si ya esta almacenado, de lo contrario null

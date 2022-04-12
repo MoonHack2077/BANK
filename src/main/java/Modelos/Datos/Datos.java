@@ -10,15 +10,15 @@ package Modelos.Datos;
  */
 public class Datos {
     protected String direccion;
-    protected int estrato;
     protected String nombre;
+    protected int estrato;
     protected int documento;
     
-    public Datos ( String direccion, int estrato, String nombre, int documentoTitular ){
+    public Datos ( String direccion, int estrato, String nombre, int documento ){
         this.direccion = direccion;
-        this.estrato = estrato;
         this.nombre = nombre;
-        this.documento = documentoTitular;
+        this.estrato = estrato;
+        this.documento = documento;
     }
 
     /**

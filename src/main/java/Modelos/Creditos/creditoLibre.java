@@ -11,7 +11,7 @@ import Modelos.Datos.Cliente;
  * @author USER
  */
 public class CreditoLibre extends Credito {
-    private double valorDataCredito;
+    private int valorDataCredito;
     
     public CreditoLibre(int numeroDeContrato, double montoTotal, int cantidadCuotas, Cliente clienteSolicitante ){
         super(numeroDeContrato, montoTotal, cantidadCuotas, clienteSolicitante);
@@ -21,14 +21,14 @@ public class CreditoLibre extends Credito {
     /**
      * @return the valorDataCredito
      */
-    public double getValorDataCredito() {
+    public int getValorDataCredito() {
         return valorDataCredito;
     }
 
     /**
      * @param valorDataCredito the valorDataCredito to set
      */
-    public void setValorDataCredito(double valorDataCredito) {
+    public void setValorDataCredito(int valorDataCredito) {
         this.valorDataCredito = valorDataCredito;
     }
 }

@@ -11,11 +11,11 @@ import Modelos.Datos.Cliente;
  * @author USER
  */
 public class Credito {
-   protected int numeroDeContrato;
-   protected double montoTotal;
-   protected int cantidadCuotas;
-   protected double valorCuota;
    protected Cliente clienteSolicitante;
+   protected int numeroDeContrato;
+   protected int cantidadCuotas;
+   protected double montoTotal;
+   protected double valorCuota;
    
    public Credito( int numeroDeContrato, double montoTotal, int cantidadCuotas, 
            Cliente clienteSolicitante )
@@ -82,5 +82,19 @@ public class Credito {
      */
     public void setClienteSolicitante(Cliente clienteSolicitante) {
         this.clienteSolicitante = clienteSolicitante;
+    }
+
+    /**
+     * @return the valorCuota
+     */
+    public double getValorCuota() {
+        return valorCuota;
+    }
+
+    /**
+     * @param valorCuota the valorCuota to set
+     */
+    public void setValorCuota(double valorCuota) {
+        this.valorCuota = valorCuota;
     }
 }
