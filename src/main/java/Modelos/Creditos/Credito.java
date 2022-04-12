@@ -17,7 +17,9 @@ public class Credito {
    protected double valorCuota;
    protected Cliente clienteSolicitante;
    
-   public Credito( int numeroDeContrato, double montoTotal, int cantidadCuotas, Cliente clienteSolicitante ){
+   public Credito( int numeroDeContrato, double montoTotal, int cantidadCuotas, 
+           Cliente clienteSolicitante )
+   {
     this.numeroDeContrato = numeroDeContrato;
     this.montoTotal = montoTotal;
     this.cantidadCuotas = cantidadCuotas;

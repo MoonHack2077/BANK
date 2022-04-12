@@ -10,10 +10,16 @@ package Modelos.Datos;
  */
 public class Cliente extends Datos{
     private double valorDataCredito;
+    private int edad;
+    private boolean creditoActivo;
 
-    public Cliente( double valorDataCredito, String direccion, int estrato, String nombre, int documentoTitular ){
+    public Cliente( double valorDataCredito, String direccion, int estrato, 
+            String nombre, int documentoTitular, boolean creditoActivo, int edad )
+    {
         super(direccion, estrato, nombre, documentoTitular);
         this.valorDataCredito = valorDataCredito;
+        this.creditoActivo = creditoActivo;
+        this.edad = edad;
     }
 
     /**
@@ -28,5 +34,33 @@ public class Cliente extends Datos{
      */
     public void setValorDataCredito(double valorDataCredito) {
         this.valorDataCredito = valorDataCredito;
+    }
+
+    /**
+     * @return the edad
+     */
+    public int getEdad() {
+        return edad;
+    }
+
+    /**
+     * @param edad the edad to set
+     */
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    /**
+     * @return the creditoActivo
+     */
+    public boolean isCreditoActivo() {
+        return creditoActivo;
+    }
+
+    /**
+     * @param creditoActivo the creditoActivo to set
+     */
+    public void setCreditoActivo(boolean creditoActivo) {
+        this.creditoActivo = creditoActivo;
     }
 }

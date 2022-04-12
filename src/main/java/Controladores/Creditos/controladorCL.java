@@ -4,10 +4,26 @@
  */
 package Controladores.Creditos;
 
+import Modelos.Creditos.Credito;
+
 /**
  *
  * @author USER
  */
-public abstract class controladorCL extends controladorCredito {
+public abstract class ControladorCL extends ControladorCredito {
+
+  
+    public ControladorCL(Credito credito ){
+        super(credito);
+    }
+    
+    public 
+    
+    @Override
+    double calcularValorCuota(){
+        
+        
+        return 0;
+    }
     
 }

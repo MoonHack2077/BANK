@@ -4,8 +4,8 @@
  */
 package Controladores;
 
-import Modelos.Creditos.creditoHipotecario;
-import Modelos.Creditos.creditoLibre;
+import Modelos.Creditos.CreditoHipotecario;
+import Modelos.Creditos.CreditoLibre;
 import Modelos.Datos.Cliente;
 import Modelos.Datos.Domicilio;
 import java.util.ArrayList;
@@ -14,13 +14,13 @@ import java.util.ArrayList;
  *
  * @author USER
  */
-public class controladorBanco {
-    private ArrayList<creditoHipotecario> creditosHipotecarios;
-    private ArrayList<creditoLibre> creditosLibres;
+public class ControladorBanco {
+    private ArrayList<CreditoHipotecario> creditosHipotecarios;
+    private ArrayList<CreditoLibre> creditosLibres;
     private ArrayList<Cliente> clientes;
     private ArrayList<Domicilio> domicilios;
     
-    public controladorBanco(){
+    public ControladorBanco(){
         creditosHipotecarios = new ArrayList<>();
         creditosLibres = new ArrayList<>();
         clientes = new ArrayList<>();
@@ -53,13 +53,12 @@ public class controladorBanco {
         Cliente aux = buscarCliente(cliente.getDocumento());
         
         if( aux == null ){
-             clientes.add(cliente);
-             return true;
+            clientes.add(cliente);
+            return true;
         }
         
         return false;
     }
-    
     
     /**
      * Metodo para eliminar un cliente almacenado
@@ -109,19 +108,100 @@ public class controladorBanco {
         return false;
     }
     
+    
+    
+    /**************** GESTIONAR CREDITOS *******************/
+    
+    
+    /*
+    *****  CREDITO HIPOTECARIO
+    *creditoH se usa como abreviacion de credito Hipotecario
+    */
+    
+    
+    /**
+     * Metodo para saber si un credito hipotecario ya está almacenado
+     * @param numeroContrato
+     * @return credito hipotecario si ya esta almacenado, de lo contrario null
+     */
+    public CreditoHipotecario buscarCreditoH( int numeroContrato ){
+        
+        for (CreditoHipotecario creditoH : creditosHipotecarios) {
+            if( creditoH.getNumeroDeContrato() == numeroContrato ) return creditoH;
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Metodo para añadir un credito hipotecario
+     * @param creditoH
+     * @return true si se añadió, de lo contrario false
+     */
+    public boolean añadirCreditoH(CreditoHipotecario creditoH){
+        CreditoHipotecario aux = buscarCreditoH(creditoH.getNumeroDeContrato());
+        
+        if( aux == null ){
+            creditosHipotecarios.add(creditoH);
+            return true;
+        }
+        
+        return false;
+    }
+    
+    
+    /*
+    *****  CREDITO Libre
+    *creditoL se usa como abreviacion de credito de libre inversion
+    */
+    
+    
+    /**
+     * Metodo para saber si un credito de libre inversion ya está almacenado
+     * @param numeroContrato
+     * @return credito de libre inversion si ya esta almacenado, de lo contrario null
+     */
+    public CreditoLibre buscarCreditoL( int numeroContrato ){
+        
+        for (CreditoLibre creditoL : creditosLibres) {
+            if( creditoL.getNumeroDeContrato() == numeroContrato ) return creditoL;
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Metodo para añadir un credito hipotecario
+     * @param creditoH
+     * @return true si se añadió, de lo contrario false
+     */
+    public boolean añadirCreditoL(CreditoHipotecario creditoH){
+        CreditoHipotecario aux = buscarCreditoH(creditoH.getNumeroDeContrato());
+        
+        if( aux == null ){
+            creditosHipotecarios.add(creditoH);
+            return true;
+        }
+        
+        return false;
+    }
+    
+    
+    
+    
     /**************** GETTERS *******************/
     
     /**
      * @return the creditosHipotecarios
      */
-    public ArrayList<creditoHipotecario> getCreditosHipotecarios() {
+    public ArrayList<CreditoHipotecario> getCreditosHipotecarios() {
         return creditosHipotecarios;
     }
 
     /**
      * @return the creditosLibres
      */
-    public ArrayList<creditoLibre> getCreditosLibres() {
+    public ArrayList<CreditoLibre> getCreditosLibres() {
         return creditosLibres;
     }
 

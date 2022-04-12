@@ -5,18 +5,23 @@
 package Modelos.Creditos;
 
 import Modelos.Datos.Cliente;
+import Modelos.Datos.Domicilio;
 import java.util.Date;
 
 /**
  *
  * @author USER
  */
-public class creditoHipotecario extends Credito {
+public class CreditoHipotecario extends Credito {
     private Date fechaDeSolicitud;
+    private Domicilio domicilio;
     
-    public creditoHipotecario(int numeroDeContrato, double montoTotal, int cantidadCuotas, Cliente clienteSolicitante, Date fechaDeSolicitud ){
+    public CreditoHipotecario(int numeroDeContrato, double montoTotal, int cantidadCuotas, 
+            Cliente clienteSolicitante, Date fechaDeSolicitud, Domicilio domicilio )
+    {
         super(numeroDeContrato, montoTotal, cantidadCuotas, clienteSolicitante);
         this.fechaDeSolicitud = fechaDeSolicitud;
+        this.domicilio = domicilio;
     }
     
     /**
@@ -31,5 +36,19 @@ public class creditoHipotecario extends Credito {
      */
     public void setFechaDeSolicitud(Date fechaDeSolicitud) {
         this.fechaDeSolicitud = fechaDeSolicitud;
+    }
+
+    /**
+     * @return the domicilio
+     */
+    public Domicilio getDomicilio() {
+        return domicilio;
+    }
+
+    /**
+     * @param domicilio the domicilio to set
+     */
+    public void setDomicilio(Domicilio domicilio) {
+        this.domicilio = domicilio;
     }
 }

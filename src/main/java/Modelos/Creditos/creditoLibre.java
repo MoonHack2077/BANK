@@ -10,10 +10,10 @@ import Modelos.Datos.Cliente;
  *
  * @author USER
  */
-public class creditoLibre extends Credito {
+public class CreditoLibre extends Credito {
     private double valorDataCredito;
     
-    public creditoLibre(int numeroDeContrato, double montoTotal, int cantidadCuotas, Cliente clienteSolicitante ){
+    public CreditoLibre(int numeroDeContrato, double montoTotal, int cantidadCuotas, Cliente clienteSolicitante ){
         super(numeroDeContrato, montoTotal, cantidadCuotas, clienteSolicitante);
         this.valorDataCredito = clienteSolicitante.getValorDataCredito();
     }
