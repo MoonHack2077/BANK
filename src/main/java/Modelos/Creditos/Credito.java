@@ -13,7 +13,7 @@ import Modelos.Datos.Cliente;
  */
 public class Credito {
    protected Cliente clienteSolicitante;
-   protected Cuota[] cuotas;
+   private Cuota[] cuotas;
    protected int numeroDeContrato;
    protected int cantidadCuotas;
    protected double montoTotal;
@@ -99,5 +99,20 @@ public class Credito {
      */
     public void setValorCuota(double valorCuota) {
         this.valorCuota = valorCuota;
+    }
+    
+    
+    /**
+     * @return the cuotas
+     */
+    public Cuota[] getCuotas() {
+        return cuotas;
+    }
+
+    /**
+     * @param cuotas the cuotas to set
+     */
+    public void setCuotas(Cuota[] cuotas) {
+        this.cuotas = cuotas;
     }
 }

@@ -18,6 +18,10 @@ public abstract class ControladorCL extends ControladorCredito {
         super(credito);
     }
     
+    /**
+     * Metodo para calcular el valor de la cuota del credito de libre expresion
+     * @return 
+     */
     @Override
     public double calcularValorCuota(){
         CreditoLibre creditoL = this.cB.buscarCreditoL(this.getNumeroContrato());

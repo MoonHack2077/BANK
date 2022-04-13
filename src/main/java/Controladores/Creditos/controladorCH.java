@@ -14,9 +14,12 @@ import Modelos.Creditos.CreditoHipotecario;
 public abstract class ControladorCH extends ControladorCredito{
     public ControladorCH( Credito credito ){
         super(credito);
-
     }
     
+    /**
+     * Metodo para calcular el valor de la cuota del credito Hipotecario
+     * @return 
+     */
     @Override
     public double calcularValorCuota(){
         CreditoHipotecario creditoH = this.cB.buscarCreditoH(this.getNumeroContrato());
@@ -35,4 +38,5 @@ public abstract class ControladorCH extends ControladorCredito{
         
         return valorTotal;
     }
+    
 }

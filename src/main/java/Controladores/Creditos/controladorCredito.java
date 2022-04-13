@@ -21,7 +21,7 @@ public abstract class ControladorCredito {
     
     public ControladorCredito( Credito credito ){
         this.credito = credito;
-        cuotas = new Cuota[credito.getCantidadCuotas()];
+        cuotas = credito.getCuotas();
         this.valorSolicitado = credito.getMontoTotal();
         this.numeroContrato = credito.getNumeroDeContrato();
         cB = new ControladorBanco();

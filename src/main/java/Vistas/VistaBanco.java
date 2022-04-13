@@ -5,6 +5,8 @@
 package Vistas;
 
 import Controladores.ControladorBanco;
+import Modelos.Datos.Cliente;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -82,7 +84,7 @@ public class VistaBanco extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,6 +97,43 @@ public class VistaBanco extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    /**
+     * Metodo para obtener el cliente ... 
+     * @return cliente si esta almacenado, de lo contrario null
+     */
+    private Cliente obtenerCliente(){
+        int documento = Integer.parseInt(JOptionPane.showInputDialog("Para saber si eres un cliente nuestro, introduce tu documento", null));
+        
+        //Se busca el cliente con el documento introducido
+        Cliente cliente = VistaBanco.CB.buscarCliente(documento);
+        
+        
+        if( cliente != null ) return cliente;
+        
+        return null;
+    }
+    /*
+    /**
+     * Metodo que valida el documento del cliente
+     * @param empleado
+     * @return true si corresponde a un cliente ..., de lo contrario false
+     
+    private boolean validarDocumento(Cliente cliente){
+        
+        if(cliente != null){
+           JOptionPane.showMessageDialog(null, "Acceso concedido " + cliente.getNombre());
+           return true;
+        }else{
+           JOptionPane.showMessageDialog(null, "El documento introducido no corresponde al de un empleado que pueda realizar este proceso");
+        }
+        return false;
+    }
+    */
+    
+    /*************** EVENTOS DE BOTONES *******************/
+    
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
         GestionarClientes clientes = new GestionarClientes();
         clientes.setVisible(true);
@@ -102,9 +141,15 @@ public class VistaBanco extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnCreditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreditosActionPerformed
-        GestionarCreditos creditos = new GestionarCreditos();
-        creditos.setVisible(true);
-        this.dispose();
+        Cliente cliente = obtenerCliente();
+        
+        if( cliente != null ){
+            GestionarCreditos creditos = new GestionarCreditos(cliente);
+            creditos.setVisible(true);
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Cliente no encontrado");
+        }
     }//GEN-LAST:event_btnCreditosActionPerformed
 
     /**
