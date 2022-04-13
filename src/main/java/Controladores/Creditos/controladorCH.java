@@ -20,12 +20,17 @@ public abstract class ControladorCH extends ControladorCredito{
     @Override
     public double calcularValorCuota(){
         CreditoHipotecario creditoH = this.cB.buscarCreditoH(this.getNumeroContrato());
+        double soli = this.getValorSolicitado();
         int estrato = creditoH.getDomicilio().getEstrato();
         double valorTotal = creditoH.getValorCuota();
         
-        if( estrato<=3 ) valorTotal+= 0.2;
-        else valorTotal+= 0.4;
-        
+        if( estrato<=3 ){ 
+            soli = (soli*1.2)/100;
+        }
+        else { 
+            soli = (soli*1.4)/100;
+        }
+        valorTotal+=soli;
         creditoH.setValorCuota(valorTotal);
         
         return valorTotal;

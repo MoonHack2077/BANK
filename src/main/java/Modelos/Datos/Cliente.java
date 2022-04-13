@@ -4,11 +4,14 @@
  */
 package Modelos.Datos;
 
+import Modelos.Creditos.Credito;
+
 /**
  *
  * @author USER
  */
 public class Cliente extends Datos{
+    private Credito credito;
     private boolean creditoActivo;
     private int valorDataCredito;
     private int edad;
@@ -53,7 +56,7 @@ public class Cliente extends Datos{
     /**
      * @return the creditoActivo
      */
-    public boolean isCreditoActivo() {
+    public boolean hasCreditoActivo() {
         return creditoActivo;
     }
 
@@ -62,5 +65,19 @@ public class Cliente extends Datos{
      */
     public void setCreditoActivo(boolean creditoActivo) {
         this.creditoActivo = creditoActivo;
+    }
+
+    /**
+     * @return the credito
+     */
+    public Credito getCredito() {
+        return credito;
+    }
+
+    /**
+     * @param credito the credito to set
+     */
+    public void setCredito(Credito credito) {
+        this.credito = credito;
     }
 }

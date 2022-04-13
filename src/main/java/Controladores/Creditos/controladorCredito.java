@@ -13,12 +13,14 @@ import Modelos.Cuota.Cuota;
  * @author USER
  */
 public abstract class ControladorCredito {
-    private Cuota[] cuotas;
-    private double valorSolicitado;
-    private int numeroContrato;
+    protected Cuota[] cuotas;
+    protected Credito credito;
+    protected double valorSolicitado;
+    protected int numeroContrato;
     protected ControladorBanco cB;
     
     public ControladorCredito( Credito credito ){
+        this.credito = credito;
         cuotas = new Cuota[credito.getCantidadCuotas()];
         this.valorSolicitado = credito.getMontoTotal();
         this.numeroContrato = credito.getNumeroDeContrato();
@@ -40,7 +42,7 @@ public abstract class ControladorCredito {
     public boolean abonarCuota(Cuota cuota){
         
         //LOOK OUT THIS PART
-        if( cuota.getMontoAbonado() < this.calcularValorCuota() ) return false;
+        if( cuota.getMontoAbonado() < this.credito.getValorCuota() ) return false;
         
         for (int i = 0; i < cuotas.length; i++) {
             if( cuotas[i] == null ){

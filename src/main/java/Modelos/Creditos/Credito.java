@@ -4,6 +4,7 @@
  */
 package Modelos.Creditos;
 
+import Modelos.Cuota.Cuota;
 import Modelos.Datos.Cliente;
 
 /**
@@ -12,6 +13,7 @@ import Modelos.Datos.Cliente;
  */
 public class Credito {
    protected Cliente clienteSolicitante;
+   protected Cuota[] cuotas;
    protected int numeroDeContrato;
    protected int cantidadCuotas;
    protected double montoTotal;
@@ -21,6 +23,7 @@ public class Credito {
            Cliente clienteSolicitante )
    {
     this.numeroDeContrato = numeroDeContrato;
+    cuotas = new Cuota[cantidadCuotas];
     this.montoTotal = montoTotal;
     this.cantidadCuotas = cantidadCuotas;
     this.valorCuota = montoTotal/cantidadCuotas;

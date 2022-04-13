@@ -21,10 +21,16 @@ public abstract class ControladorCL extends ControladorCredito {
     @Override
     public double calcularValorCuota(){
         CreditoLibre creditoL = this.cB.buscarCreditoL(this.getNumeroContrato());
+        double soli = this.getValorSolicitado();
         int valorData = creditoL.getValorDataCredito();
         double valorTotal = creditoL.getValorCuota();
-        if( valorData>=250 && valorData<=320 ) valorTotal+= 1.6;
-        else valorTotal+= 1.9;
+        
+        if( valorData>=250 && valorData<=320 ){ 
+            soli= (soli*1.6)/100;
+        }
+        else soli= (soli*1.9)/100;
+        
+        valorTotal+=soli;
         creditoL.setValorCuota(valorTotal);
         return valorTotal;
     }

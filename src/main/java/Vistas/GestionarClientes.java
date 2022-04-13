@@ -4,6 +4,9 @@
  */
 package Vistas;
 
+import Modelos.Datos.Cliente;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author USER
@@ -16,6 +19,7 @@ public class GestionarClientes extends javax.swing.JFrame {
     public GestionarClientes() {
         initComponents();
         this.setLocationRelativeTo(null);
+        setEnabledInputs(false);
     }
 
     /**
@@ -72,12 +76,32 @@ public class GestionarClientes extends javax.swing.JFrame {
         jLabel8.setText("-");
 
         btnAñadir.setText("AÑADIR");
+        btnAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAñadirActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
-        btnEditar.setText("ELIMINAR");
+        btnEditar.setText("EDITAR");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
-        btnEliminar.setText("EDITAR");
+        btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -86,49 +110,48 @@ public class GestionarClientes extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAñadir)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(btnBuscar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnEditar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnEliminar))
-                                    .addComponent(txtEstrato, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtNumeroUno, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNumeroDos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(71, 71, 71))))
                     .addComponent(jLabel5)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAñadir)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(19, 19, 19)
+                                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtEstrato, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(5, 5, 5)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addComponent(jLabel6)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(txtNumeroUno, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(txtNumeroDos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(btnBuscar)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btnEliminar)))))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEditar)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,8 +192,8 @@ public class GestionarClientes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAñadir)
                     .addComponent(btnBuscar)
-                    .addComponent(btnEditar)
-                    .addComponent(btnEliminar))
+                    .addComponent(btnEliminar)
+                    .addComponent(btnEditar))
                 .addGap(50, 50, 50))
         );
 
@@ -212,6 +235,130 @@ public class GestionarClientes extends javax.swing.JFrame {
         banco.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    /**
+     * Metodo para limpiar el contenido de los text fields
+     */
+    private void limpiarInputs(){
+        txtNombre.setText("");
+        txtDocumento.setText("");
+        txtEdad.setText("");
+        txtEstrato.setText("");
+        txtCarrera.setText("");
+        txtNumeroUno.setText("");
+        txtNumeroDos.setText("");
+    }
+    
+    /**
+     * Metodo para activar o desactivar los botones de eliminar y editar
+     * @param enabled 
+     */
+    private void setEnabledInputs(boolean enabled){
+        btnEditar.setEnabled(enabled);
+        btnEliminar.setEnabled(enabled);
+    }
+    
+    
+    
+    /*************** EVENTOS DE BOTONES *******************/
+    
+    /**
+     * Metodo para añadir un cliente mediante el botón de añadir
+     * @param evt 
+     */
+    private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
+        String nombre = txtNombre.getText();
+        int documento = Integer.parseInt(txtDocumento.getText());
+        int edad = Integer.parseInt(txtEdad.getText());
+        int estrato = Integer.parseInt(txtEstrato.getText());
+        int valorDataCredito = VistaBanco.CB.generarValorDataCredito();
+        
+        //Obteniendo la direccion
+        String carrera = txtCarrera.getText();
+        String numeroUno = txtNumeroUno.getText();
+        String numeroDos = txtNumeroDos.getText();
+        String direccion = carrera + " " + numeroUno + " " + numeroDos ;
+        
+        Cliente cliente = new Cliente( valorDataCredito, direccion, estrato, nombre, documento, edad );
+        boolean añadido = VistaBanco.CB.añadirCliente(cliente);
+        
+        if( añadido ){
+            JOptionPane.showMessageDialog(null, "Cliente con el documento " + documento + " añadido");
+            limpiarInputs();
+        }else{
+            JOptionPane.showMessageDialog(null, "No se pudo añadir al cliente");
+        }
+    }//GEN-LAST:event_btnAñadirActionPerformed
+
+    /**
+     * Metodo para buscar un cliente mediante el boton buscar
+     * @param evt 
+     */
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        int documento = Integer.parseInt(txtDocumento.getText());
+        Cliente cliente = VistaBanco.CB.buscarCliente(documento);
+        
+        if( cliente != null ){
+            txtNombre.setText(cliente.getNombre());
+            txtEdad.setText(String.valueOf(cliente.getEdad()));
+            txtEstrato.setText(String.valueOf(cliente.getEstrato()));
+            
+            String[] direccion = cliente.getDireccion().split(" ");
+            txtCarrera.setText(direccion[0]);
+            txtNumeroUno.setText(direccion[1]);
+            txtNumeroDos.setText(direccion[2]);
+            setEnabledInputs(true);
+        }else{
+           JOptionPane.showMessageDialog(null, "Cliente no encontrado"); 
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    /**
+     * Metodo para editar la informacion de un cliente mediante el boton editar
+     * @param evt 
+     */
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        String nombre = txtNombre.getText();
+        int documento = Integer.parseInt(txtDocumento.getText());
+        int edad = Integer.parseInt(txtEdad.getText());
+        int estrato = Integer.parseInt(txtEstrato.getText());
+        int valorDataCredito = VistaBanco.CB.generarValorDataCredito();
+        
+        //Obteniendo la direccion
+        String carrera = txtCarrera.getText();
+        String numeroUno = txtNumeroUno.getText();
+        String numeroDos = txtNumeroDos.getText();
+        String direccion = carrera + " " + numeroUno + " " + numeroDos ;
+        
+        Cliente cliente = new Cliente( valorDataCredito, direccion, estrato, nombre, documento, edad );
+        boolean editado = VistaBanco.CB.editarCliente(cliente);
+        
+        if( editado ){
+            JOptionPane.showMessageDialog(null, "Cliente con el documento " + documento + " editado");
+            limpiarInputs();
+            setEnabledInputs(false);
+        }else{
+            JOptionPane.showMessageDialog(null, "No se pudo editar al cliente");
+        }
+        
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    /**
+     * Metodo para eliminar un cliente mediante el boton eliminar
+     * @param evt 
+     */
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int documento = Integer.parseInt(txtDocumento.getText());
+        boolean eliminado = VistaBanco.CB.eliminarCliente(documento);
+        
+        if( eliminado ){
+            JOptionPane.showMessageDialog(null, "Cliente con el documento " + documento + " eliminado");
+            limpiarInputs();
+            setEnabledInputs(false);
+        }else{
+            JOptionPane.showMessageDialog(null, "No se pudo eliminar al cliente");
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
