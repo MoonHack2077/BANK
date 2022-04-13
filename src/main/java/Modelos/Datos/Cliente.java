@@ -16,10 +16,10 @@ public class Cliente extends Datos{
     private int valorDataCredito;
     private int edad;
 
-    public Cliente( int valorDataCredito, String direccion, int estrato, 
+    public Cliente( int valorDataCredito, int estrato, 
             String nombre, int documentoTitular, int edad )
     {
-        super(direccion, estrato, nombre, documentoTitular);
+        super(estrato, nombre, documentoTitular);
         this.valorDataCredito = valorDataCredito;
         this.creditoActivo = false;
         this.edad = edad;

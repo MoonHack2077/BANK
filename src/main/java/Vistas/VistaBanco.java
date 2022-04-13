@@ -4,6 +4,7 @@
  */
 package Vistas;
 
+import Vistas.Creditos.GestionarCreditos;
 import Controladores.ControladorBanco;
 import Modelos.Datos.Cliente;
 import javax.swing.JOptionPane;
@@ -114,23 +115,6 @@ public class VistaBanco extends javax.swing.JFrame {
         
         return null;
     }
-    /*
-    /**
-     * Metodo que valida el documento del cliente
-     * @param empleado
-     * @return true si corresponde a un cliente ..., de lo contrario false
-     
-    private boolean validarDocumento(Cliente cliente){
-        
-        if(cliente != null){
-           JOptionPane.showMessageDialog(null, "Acceso concedido " + cliente.getNombre());
-           return true;
-        }else{
-           JOptionPane.showMessageDialog(null, "El documento introducido no corresponde al de un empleado que pueda realizar este proceso");
-        }
-        return false;
-    }
-    */
     
     /*************** EVENTOS DE BOTONES *******************/
     

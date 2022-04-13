@@ -9,12 +9,14 @@ package Modelos.Datos;
  * @author USER
  */
 public class Domicilio extends Datos {
+    protected String direccion;
     private double avaluoComercial;
     
     public Domicilio( double avaluoComercial, String direccion, int estrato, 
             String nombre, int documentoTitular )
     {
-        super(direccion, estrato, nombre, documentoTitular);
+        super(estrato, nombre, documentoTitular);
+        this.direccion = direccion;
         this.avaluoComercial = avaluoComercial;
     }
 

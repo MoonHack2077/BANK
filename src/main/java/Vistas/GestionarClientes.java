@@ -32,7 +32,6 @@ public class GestionarClientes extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -40,24 +39,16 @@ public class GestionarClientes extends javax.swing.JFrame {
         txtNombre = new javax.swing.JTextField();
         txtDocumento = new javax.swing.JTextField();
         txtEdad = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         txtEstrato = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        txtCarrera = new javax.swing.JTextField();
         btnAñadir = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        txtNumeroUno = new javax.swing.JTextField();
-        txtNumeroDos = new javax.swing.JTextField();
         btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "GESTIONAR LOS CLIENTES", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION)));
-
-        jLabel1.setText("Direccion");
 
         jLabel2.setText("Nombre");
 
@@ -66,14 +57,6 @@ public class GestionarClientes extends javax.swing.JFrame {
         jLabel4.setText("Documento");
 
         jLabel5.setText("Edad");
-
-        jLabel6.setText("Carrera");
-
-        jLabel7.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        jLabel7.setText("Numero");
-
-        jLabel8.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jLabel8.setText("-");
 
         btnAñadir.setText("AÑADIR");
         btnAñadir.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +94,6 @@ public class GestionarClientes extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel1)
                     .addComponent(jLabel3)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,21 +112,6 @@ public class GestionarClientes extends javax.swing.JFrame {
                                             .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtEstrato, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(5, 5, 5)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                                        .addComponent(jLabel6)
-                                                        .addGap(18, 18, 18)
-                                                        .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(txtNumeroUno, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(txtNumeroDos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(btnBuscar)
                                                 .addGap(18, 18, 18)
@@ -168,23 +135,7 @@ public class GestionarClientes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNumeroUno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNumeroDos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jLabel1)))
-                .addGap(36, 36, 36)
+                .addGap(128, 128, 128)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtEstrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -244,9 +195,6 @@ public class GestionarClientes extends javax.swing.JFrame {
         txtDocumento.setText("");
         txtEdad.setText("");
         txtEstrato.setText("");
-        txtCarrera.setText("");
-        txtNumeroUno.setText("");
-        txtNumeroDos.setText("");
     }
     
     /**
@@ -273,13 +221,7 @@ public class GestionarClientes extends javax.swing.JFrame {
         int estrato = Integer.parseInt(txtEstrato.getText());
         int valorDataCredito = VistaBanco.CB.generarValorDataCredito();
         
-        //Obteniendo la direccion
-        String carrera = txtCarrera.getText();
-        String numeroUno = txtNumeroUno.getText();
-        String numeroDos = txtNumeroDos.getText();
-        String direccion = carrera + " " + numeroUno + " " + numeroDos ;
-        
-        Cliente cliente = new Cliente( valorDataCredito, direccion, estrato, nombre, documento, edad );
+        Cliente cliente = new Cliente( valorDataCredito,estrato, nombre, documento, edad );
         boolean añadido = VistaBanco.CB.añadirCliente(cliente);
         
         if( añadido ){
@@ -302,11 +244,6 @@ public class GestionarClientes extends javax.swing.JFrame {
             txtNombre.setText(cliente.getNombre());
             txtEdad.setText(String.valueOf(cliente.getEdad()));
             txtEstrato.setText(String.valueOf(cliente.getEstrato()));
-            
-            String[] direccion = cliente.getDireccion().split(" ");
-            txtCarrera.setText(direccion[0]);
-            txtNumeroUno.setText(direccion[1]);
-            txtNumeroDos.setText(direccion[2]);
             setEnabledInputs(true);
         }else{
            JOptionPane.showMessageDialog(null, "Cliente no encontrado"); 
@@ -324,13 +261,7 @@ public class GestionarClientes extends javax.swing.JFrame {
         int estrato = Integer.parseInt(txtEstrato.getText());
         int valorDataCredito = VistaBanco.CB.generarValorDataCredito();
         
-        //Obteniendo la direccion
-        String carrera = txtCarrera.getText();
-        String numeroUno = txtNumeroUno.getText();
-        String numeroDos = txtNumeroDos.getText();
-        String direccion = carrera + " " + numeroUno + " " + numeroDos ;
-        
-        Cliente cliente = new Cliente( valorDataCredito, direccion, estrato, nombre, documento, edad );
+        Cliente cliente = new Cliente( valorDataCredito,estrato, nombre, documento, edad );
         boolean editado = VistaBanco.CB.editarCliente(cliente);
         
         if( editado ){
@@ -401,21 +332,14 @@ public class GestionarClientes extends javax.swing.JFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtCarrera;
     private javax.swing.JTextField txtDocumento;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtEstrato;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtNumeroDos;
-    private javax.swing.JTextField txtNumeroUno;
     // End of variables declaration//GEN-END:variables
 }

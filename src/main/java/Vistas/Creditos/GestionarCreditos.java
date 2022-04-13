@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Vistas;
+package Vistas.Creditos;
 
 import Modelos.Datos.Cliente;
+import Vistas.VistaBanco;
 
 /**
  *
@@ -12,6 +13,8 @@ import Modelos.Datos.Cliente;
  */
 public class GestionarCreditos extends javax.swing.JFrame {
 
+    private Cliente cliente;
+    
     /**
      * Creates new form GestionarCreditos
      */
@@ -23,6 +26,7 @@ public class GestionarCreditos extends javax.swing.JFrame {
     public GestionarCreditos(Cliente cliente) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.cliente = cliente;
         
         if( !cliente.hasCreditoActivo() ){
             btnConsultarCuotas.setEnabled(false);
@@ -123,7 +127,7 @@ public class GestionarCreditos extends javax.swing.JFrame {
     
     
     private void btnCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreditoActionPerformed
-        Creditos ventanaCreditos = new Creditos();
+        Creditos ventanaCreditos = new Creditos(this.cliente);
         ventanaCreditos.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCreditoActionPerformed

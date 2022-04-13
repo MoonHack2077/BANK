@@ -9,30 +9,14 @@ package Modelos.Datos;
  * @author USER
  */
 public class Datos {
-    protected String direccion;
     protected String nombre;
     protected int estrato;
     protected int documento;
     
-    public Datos ( String direccion, int estrato, String nombre, int documento ){
-        this.direccion = direccion;
+    public Datos ( int estrato, String nombre, int documento ){
         this.nombre = nombre;
         this.estrato = estrato;
         this.documento = documento;
-    }
-
-    /**
-     * @return the direccion
-     */
-    public String getDireccion() {
-        return direccion;
-    }
-
-    /**
-     * @param direccion the direccion to set
-     */
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
     }
 
     /**
