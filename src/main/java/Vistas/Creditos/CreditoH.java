@@ -26,7 +26,7 @@ public class CreditoH extends javax.swing.JFrame {
     }
     
     /*
-    *Constructor para transferir la informacion del cliente
+    * Constructor para transferir la informacion del cliente
     */
     public CreditoH(Cliente cliente) {
         initComponents();
@@ -278,14 +278,25 @@ public class CreditoH extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+  
+    
+    
+    /** EVENTO DEL BOTON CREAR **/
+    
+    /**
+     * Metodo para crear el credito por medio del boton crear
+     * @param evt 
+     */
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        //Obteniendo los datos del usuario
+        //Obteniendo los datos del domicilio
         String nombre = txtNombre.getText();
         int documento = Integer.parseInt(txtDocumento.getText());
         double avaluo = Double.parseDouble(txtAvaluo.getText());
         int estrato = Integer.parseInt(txtEstrato.getText());
-        int contrato = Integer.parseInt(txtContrato.getText());
+        
+        //Obteniendo los datos de las cuotas, el monto total y el numero de contrato
         double monto = Double.parseDouble(txtMonto.getText());
+        int contrato = Integer.parseInt(txtContrato.getText());
         int cuotas = Integer.parseInt(txtCuotas.getText());
 
         //Parseando los datos a enteros para crear la fecha
@@ -308,33 +319,43 @@ public class CreditoH extends javax.swing.JFrame {
         String numeroUno = txtNumeroUno.getText();
         String numeroDos = txtNumeroDos.getText();
         String direccion = carrera + " " + numeroUno + " " + numeroDos ;
-             
+        
+        /*
         String[] partesDireccion = direccion.split(" ");
         txtCarrera.setText(partesDireccion[0]);
         txtNumeroUno.setText(partesDireccion[1]);
         txtNumeroDos.setText(partesDireccion[2]);
+        */
         
         //Creando el docmicilio
         Domicilio domicilio = new Domicilio(avaluo, direccion, estrato, nombre, documento);
-        
-        //Seteando el estado del credito del cliente
-        this.cliente.setCreditoActivo(true);
-        
-        //Creando el creditos
+              
+        //Creando el credito
         CreditoHipotecario creditoH = new CreditoHipotecario(contrato, monto, cuotas, this.cliente, fechaSolicitud, domicilio);
+               
+        //Seteando los estados del credito del cliente
+        this.cliente.setCreditoActivo(true);
+        this.cliente.setCredito(creditoH);
         
-        //Validando si se pudo añadir el domicilio
-        boolean creado = VistaBanco.CB.añadirCreditoH(creditoH);
-        if(creado){
-            JOptionPane.showMessageDialog(null, "Gracias por confiar en nosotros " + this.cliente.getNombre() + " su credito ha sido creado");
+        //Validando si se pudo añadir el credito
+        boolean añadido = VistaBanco.CB.añadirCreditoH(creditoH);
+        if(añadido){
+            JOptionPane.showMessageDialog(null, "Gracias por confiar en nosotros " + this.cliente.getNombre().toUpperCase() + " su credito ha sido creado");
+            GestionarCreditos creditos = new GestionarCreditos(this.cliente);
+            creditos.setVisible(true);
+            this.dispose();
         }else{
-            JOptionPane.showMessageDialog(null, "Su credito ha sido creado");
+            JOptionPane.showMessageDialog(null, "NO se ha podido crear su credito");
         }
         
     }//GEN-LAST:event_btnCrearActionPerformed
 
+    /**
+     * Metodo para volver a la ventana donde aparecen los creditos
+     * @param evt 
+     */
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        Creditos creditos = new Creditos();
+        Creditos creditos = new Creditos(this.cliente);
         creditos.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed

@@ -4,17 +4,39 @@
  */
 package Vistas.Creditos;
 
+import Modelos.Creditos.CreditoLibre;
+import Modelos.Datos.Cliente;
+import Vistas.VistaBanco;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author USER
  */
 public class CreditoL extends javax.swing.JFrame {
 
+    private Cliente cliente;
+    
     /**
      * Creates new form CreditoL
      */
     public CreditoL() {
         initComponents();
+    }
+    
+    /*
+    *Constructor para transferir la informacion del cliente
+    */
+    public CreditoL(Cliente cliente) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.cliente = cliente;
+        
+        /*
+        * Al iniciar el componente se inserta el valor de data credito del cliente
+        * para mejorar la experiencia del usuario
+        */
+        txtDataCredito.setText(String.valueOf(cliente.getValorDataCredito()));
     }
 
     /**
@@ -28,49 +50,163 @@ public class CreditoL extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         brnCrear = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        txtContrato = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txtMonto = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        txtCuotas = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        txtDataCredito = new javax.swing.JLabel();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CREDITO DE LIBRE INVERSION", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         brnCrear.setText("CREAR");
+        brnCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                brnCrearActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Ingrese el numero de contrato: ");
+
+        jLabel12.setText("Monto Total:");
+
+        jLabel13.setText("Cantidad de cuotas");
+
+        jLabel1.setText("Su valor de data credito es: ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(181, 181, 181)
+                .addGap(33, 33, 33)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel1))
+                .addGap(45, 45, 45)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtContrato, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                    .addComponent(txtMonto)
+                    .addComponent(txtCuotas)
+                    .addComponent(txtDataCredito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(brnCrear)
-                .addContainerGap(333, Short.MAX_VALUE))
+                .addGap(150, 150, 150))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(315, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtContrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel13))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtDataCredito, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE)
+                        .addGap(50, 50, 50))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(brnCrear)
-                .addGap(42, 42, 42))
+                .addContainerGap())
         );
+
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnVolver)))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addContainerGap()
+                .addComponent(btnVolver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    
+    /* EVENTOS DE LOS BOTONES */
+    
+    /**
+     * Metodo para volver a la ventana donde aparecen los creditos
+     * @param evt 
+     */
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        Creditos creditos = new Creditos(this.cliente);
+        creditos.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    /**
+     * metodo para crear el credito de libre inversion
+     * @param evt 
+     */
+    private void brnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnCrearActionPerformed
+        //Obteniendo los datos del usuario
+        int contrato = Integer.parseInt(txtContrato.getText());
+        double monto = Double.parseDouble(txtMonto.getText());
+        int cuotas = Integer.parseInt(txtCuotas.getText());
+        
+        //Creando el credito
+        CreditoLibre creditoL = new CreditoLibre(contrato, monto, cuotas, this.cliente);
+        
+        
+        //Seteando los estados del credito del cliente
+        this.cliente.setCreditoActivo(true);
+        this.cliente.setCredito(creditoL);
+        
+        //Validando si se pudo añadir el credito
+        boolean creado = VistaBanco.CB.añadirCreditoL(creditoL);
+        if(creado){
+            JOptionPane.showMessageDialog(null, "Gracias por confiar en nosotros " + this.cliente.getNombre().toUpperCase() + " su credito ha sido creado");
+            GestionarCreditos creditos = new GestionarCreditos(this.cliente);
+            creditos.setVisible(true);
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "NO se ha podido crear su credito");
+        }
+    }//GEN-LAST:event_brnCrearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -109,6 +245,15 @@ public class CreditoL extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnCrear;
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtContrato;
+    private javax.swing.JTextField txtCuotas;
+    private javax.swing.JLabel txtDataCredito;
+    private javax.swing.JTextField txtMonto;
     // End of variables declaration//GEN-END:variables
 }

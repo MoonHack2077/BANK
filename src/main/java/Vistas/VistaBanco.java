@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class VistaBanco extends javax.swing.JFrame {
 
+    //Instanciando el controlador del banco
     public static ControladorBanco CB = new ControladorBanco();
 ;
     
@@ -101,7 +102,7 @@ public class VistaBanco extends javax.swing.JFrame {
     
     
     /**
-     * Metodo para obtener el cliente ... 
+     * Metodo para obtener el cliente que realizará las acciones posteriores
      * @return cliente si esta almacenado, de lo contrario null
      */
     private Cliente obtenerCliente(){
@@ -109,21 +110,29 @@ public class VistaBanco extends javax.swing.JFrame {
         
         //Se busca el cliente con el documento introducido
         Cliente cliente = VistaBanco.CB.buscarCliente(documento);
-        
-        
+               
         if( cliente != null ) return cliente;
         
         return null;
     }
     
+    
     /*************** EVENTOS DE BOTONES *******************/
     
+    /**
+     * Metodo para ir a la ventana para gestionar los clientes
+     * @param evt 
+     */
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
         GestionarClientes clientes = new GestionarClientes();
         clientes.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnClientesActionPerformed
 
+    /**
+     * Metodo para saber si se cambia de ventana
+     * @param evt 
+     */
     private void btnCreditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreditosActionPerformed
         Cliente cliente = obtenerCliente();
         

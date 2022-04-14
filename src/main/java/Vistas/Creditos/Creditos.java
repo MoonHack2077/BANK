@@ -23,10 +23,19 @@ public class Creditos extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
     
+    /**
+     * Constructor para transferir la informacion del cliente
+     * @param cliente 
+     */
     public Creditos(Cliente cliente) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.cliente = cliente;
+        
+        if(this.cliente.hasCreditoActivo()){
+            btnCreditoH.setEnabled(false);
+            btnCreditoL.setEnabled(false);
+        }
     }
 
     /**
@@ -45,7 +54,7 @@ public class Creditos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ELIGE UN CREDITO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         btnCreditoH.setText("CREDITO HIPOTECARIO");
         btnCreditoH.addActionListener(new java.awt.event.ActionListener() {
@@ -55,6 +64,11 @@ public class Creditos extends javax.swing.JFrame {
         });
 
         btnCreditoL.setText("CREDITO DE LIBRE INVERSION");
+        btnCreditoL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreditoLActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -100,7 +114,7 @@ public class Creditos extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnVolver)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -110,17 +124,44 @@ public class Creditos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        GestionarCreditos creditos = new GestionarCreditos();
+    /**
+     * Metodo para volver a la ventana de gestionar creditos
+     */
+    public void regresar(){
+        GestionarCreditos creditos = new GestionarCreditos(this.cliente);
         creditos.setVisible(true);
         this.dispose();
+    }
+    
+    /** EVENTOS DE BOTONES **/
+    
+    /**
+     * Metodo que ejecuta la funcion regresar mediante el boton volver
+     * @param evt 
+     */
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        regresar();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    /**
+     * Metodo para ir a la ventana para crear un credito hipotecario
+     * @param evt 
+     */
     private void btnCreditoHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreditoHActionPerformed
         CreditoH creditoH = new CreditoH(this.cliente);
         creditoH.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCreditoHActionPerformed
+
+    /**
+     *  Metodo para ir a la ventana para crear un credito de libre inversion
+     * @param evt 
+     */
+    private void btnCreditoLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreditoLActionPerformed
+        CreditoL creditoL = new CreditoL(this.cliente);
+        creditoL.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCreditoLActionPerformed
 
     /**
      * @param args the command line arguments

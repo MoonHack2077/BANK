@@ -15,7 +15,7 @@ import Vistas.VistaBanco;
 public class GestionarCreditos extends javax.swing.JFrame {
 
     private Cliente cliente;
-    protected ControladorCH CC;
+    protected ControladorCH CC; //CC se usa como abreviacion de ControladorCredito
     
     /**
      * Creates new form GestionarCreditos
@@ -25,6 +25,10 @@ public class GestionarCreditos extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
     
+    /**
+     * Constructor para transferir la informacion del cliente
+     * @param cliente 
+     */
     public GestionarCreditos(Cliente cliente) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -57,7 +61,7 @@ public class GestionarCreditos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ELIGE UN CREDITO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ELIGE UNA OPCION", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         btnAbonarCuota.setText("ABONAR CUOTA");
 
@@ -128,14 +132,22 @@ public class GestionarCreditos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /*** EVENTOS DE BOTONES ***/
     
-    
+    /**
+     * Metodo para ir a la ventana donde aparecen los dos creditos
+     * @param evt 
+     */
     private void btnCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreditoActionPerformed
         Creditos ventanaCreditos = new Creditos(this.cliente);
         ventanaCreditos.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCreditoActionPerformed
 
+    /**
+     * Metodo para volver a la ventana principal
+     * @param evt 
+     */
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         VistaBanco banco = new VistaBanco();
         banco.setVisible(true);

@@ -177,15 +177,15 @@ public class ControladorBanco {
     }
     
     /**
-     * Metodo para añadir un credito hipotecario
-     * @param creditoH
+     * Metodo para añadir un credito libre
+     * @param creditoL
      * @return true si se añadió, de lo contrario false
      */
-    public boolean añadirCreditoL(CreditoHipotecario creditoH){
-        CreditoHipotecario aux = buscarCreditoH(creditoH.getNumeroDeContrato());
+    public boolean añadirCreditoL(CreditoLibre creditoL){
+        CreditoHipotecario aux = buscarCreditoH(creditoL.getNumeroDeContrato());
         
         if( aux == null ){
-            creditosHipotecarios.add(creditoH);
+            creditosLibres.add(creditoL);
             return true;
         }
         
