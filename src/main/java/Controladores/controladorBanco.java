@@ -7,7 +7,6 @@ package Controladores;
 import Modelos.Creditos.CreditoHipotecario;
 import Modelos.Creditos.CreditoLibre;
 import Modelos.Datos.Cliente;
-import Modelos.Datos.Domicilio;
 import java.util.ArrayList;
 
 /**
@@ -18,13 +17,13 @@ public class ControladorBanco {
     private ArrayList<CreditoHipotecario> creditosHipotecarios;
     private ArrayList<CreditoLibre> creditosLibres;
     private ArrayList<Cliente> clientes;
-    private ArrayList<Domicilio> domicilios;
+    //private ArrayList<Domicilio> domicilios;
     
     public ControladorBanco(){
         creditosHipotecarios = new ArrayList<>();
         creditosLibres = new ArrayList<>();
         clientes = new ArrayList<>();
-        domicilios = new ArrayList<>();
+        //domicilios = new ArrayList<>();
     }
 
     
@@ -104,7 +103,6 @@ public class ControladorBanco {
                     if( cliente.getValorDataCredito()<250 || cliente.getValorDataCredito()>400 ) return false;
                     
                     //Inyectando los nuevos valores
-                    clientes.get(i).setDireccion(cliente.getDireccion());
                     clientes.get(i).setEstrato(cliente.getEstrato());
                     clientes.get(i).setNombre(cliente.getNombre());
                     clientes.get(i).setValorDataCredito(cliente.getValorDataCredito());
@@ -222,8 +220,9 @@ public class ControladorBanco {
 
     /**
      * @return the domicilios
-     */
+     
     public ArrayList<Domicilio> getDomicilios() {
         return domicilios;
     }
+    * */
 }

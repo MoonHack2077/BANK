@@ -14,6 +14,7 @@ public class Creditos extends javax.swing.JFrame {
 
     private Cliente cliente;
     
+    
     /**
      * Creates new form Creditos
      */
@@ -47,6 +48,11 @@ public class Creditos extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         btnCreditoH.setText("CREDITO HIPOTECARIO");
+        btnCreditoH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreditoHActionPerformed(evt);
+            }
+        });
 
         btnCreditoL.setText("CREDITO DE LIBRE INVERSION");
 
@@ -109,6 +115,12 @@ public class Creditos extends javax.swing.JFrame {
         creditos.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnCreditoHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreditoHActionPerformed
+        CreditoH creditoH = new CreditoH(this.cliente);
+        creditoH.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCreditoHActionPerformed
 
     /**
      * @param args the command line arguments

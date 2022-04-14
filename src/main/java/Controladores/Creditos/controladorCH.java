@@ -11,7 +11,7 @@ import Modelos.Creditos.CreditoHipotecario;
  *
  * @author USER
  */
-public abstract class ControladorCH extends ControladorCredito{
+public class ControladorCH extends ControladorCredito{
     public ControladorCH( Credito credito ){
         super(credito);
     }

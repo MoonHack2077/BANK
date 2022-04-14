@@ -11,7 +11,7 @@ import Modelos.Creditos.CreditoLibre;
  *
  * @author USER
  */
-public abstract class ControladorCL extends ControladorCredito {
+public class ControladorCL extends ControladorCredito {
 
   
     public ControladorCL(Credito credito ){

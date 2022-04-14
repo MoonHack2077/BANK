@@ -4,6 +4,7 @@
  */
 package Vistas.Creditos;
 
+import Controladores.Creditos.ControladorCH;
 import Modelos.Datos.Cliente;
 import Vistas.VistaBanco;
 
@@ -14,6 +15,7 @@ import Vistas.VistaBanco;
 public class GestionarCreditos extends javax.swing.JFrame {
 
     private Cliente cliente;
+    protected ControladorCH CC;
     
     /**
      * Creates new form GestionarCreditos
@@ -27,6 +29,8 @@ public class GestionarCreditos extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.cliente = cliente;
+        
+        if(cliente.getCredito() != null) this.CC = new ControladorCH(cliente.getCredito());
         
         if( !cliente.hasCreditoActivo() ){
             btnConsultarCuotas.setEnabled(false);
