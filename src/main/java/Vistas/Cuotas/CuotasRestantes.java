@@ -6,7 +6,6 @@ package Vistas.Cuotas;
 
 import Modelos.Datos.Cliente;
 import Vistas.Creditos.GestionarCreditos;
-import Vistas.GestionarClientes;
 
 /**
  *
@@ -14,6 +13,7 @@ import Vistas.GestionarClientes;
  */
 public class CuotasRestantes extends javax.swing.JFrame {
 
+    private Cliente cliente;
     /**
      * Creates new form ConsultarCuotas
      */
@@ -164,7 +164,7 @@ public class CuotasRestantes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        GestionarCreditos gestionar = new GestionarCreditos();
+        GestionarCreditos gestionar = new GestionarCreditos(this.cliente);
         gestionar.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed

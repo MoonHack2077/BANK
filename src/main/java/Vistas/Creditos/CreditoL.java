@@ -197,9 +197,9 @@ public class CreditoL extends javax.swing.JFrame {
         this.cliente.setCredito(creditoL);
         
         //Validando si se pudo añadir el credito
-        boolean creado = VistaBanco.CB.añadirCreditoL(creditoL);
+        boolean creado = GestionarCreditos.CL.añadirCreditoL(creditoL);
         if(creado){
-            GestionarCreditos.CL.calcularValorCuota();
+            GestionarCreditos.CL.calcularValorCuota(creditoL);
             JOptionPane.showMessageDialog(null, "Gracias por confiar en nosotros " + this.cliente.getNombre().toUpperCase() + " su credito ha sido creado");
             GestionarCreditos creditos = new GestionarCreditos(this.cliente);
             creditos.setVisible(true);

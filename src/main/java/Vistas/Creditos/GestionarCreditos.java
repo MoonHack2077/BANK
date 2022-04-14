@@ -19,8 +19,8 @@ import Vistas.VistaBanco;
 public class GestionarCreditos extends javax.swing.JFrame {
 
     private Cliente cliente;
-    protected static ControladorCH CH; //CH se usa como abreviacion de ControladorCH
-    protected static ControladorCL CL; //Cl se usa como abreviacion de ControladorCL
+    protected static ControladorCH CH = new ControladorCH();; //CH se usa como abreviacion de ControladorCH
+    protected static ControladorCL CL = new ControladorCL();; //Cl se usa como abreviacion de ControladorCL
     
     /**
      * Creates new form GestionarCreditos
@@ -39,17 +39,10 @@ public class GestionarCreditos extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.cliente = cliente;
         
-        if(cliente.getCredito()!= null){
-            if(cliente.getCredito().getTipo().equals("Hipotecario")){
-                CH = new ControladorCH(cliente.getCredito());
-            }else{
-                CL = new ControladorCL(cliente.getCredito());
-            }
-        }
-        
         if( !cliente.hasCreditoActivo() ){
             btnConsultarCuotasRestantes.setEnabled(false);
             btnAbonarCuota.setEnabled(false);
+            btnConsultarCuotasAbonadas.setEnabled(false);
         }else{
             btnCredito.setEnabled(false);
         }
@@ -173,7 +166,7 @@ public class GestionarCreditos extends javax.swing.JFrame {
     private void btnCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreditoActionPerformed
         Creditos ventanaCreditos = new Creditos(this.cliente);
         ventanaCreditos.setVisible(true);
-        //this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnCreditoActionPerformed
 
     /**
@@ -186,18 +179,30 @@ public class GestionarCreditos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    /**
+     * 
+     * @param evt 
+     */
     private void btnConsultarCuotasRestantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCuotasRestantesActionPerformed
         CuotasRestantes cuotas = new CuotasRestantes(this.cliente);
         cuotas.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnConsultarCuotasRestantesActionPerformed
 
+    /**
+     * 
+     * @param evt 
+     */
     private void btnAbonarCuotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbonarCuotaActionPerformed
         AbonarCuota abonarCuota = new AbonarCuota(this.cliente);
         abonarCuota.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAbonarCuotaActionPerformed
 
+    /**
+     * 
+     * @param evt 
+     */
     private void btnConsultarCuotasAbonadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCuotasAbonadasActionPerformed
         CuotasAbonadas abonadas = new CuotasAbonadas(this.cliente);
         abonadas.setVisible(true);
