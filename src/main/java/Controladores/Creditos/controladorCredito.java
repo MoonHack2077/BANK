@@ -43,10 +43,13 @@ public abstract class ControladorCredito {
         
         //LOOK OUT THIS PART
         if( cuota.getMontoAbonado() < this.credito.getValorCuota() ) return false;
-        
+        int contador = 0;
         for (int i = 0; i < cuotas.length; i++) {
+            if( cuotas[i] != null ) contador++;
+            
             if( cuotas[i] == null ){
                 cuotas[i] = cuota;
+                cuotas[i].setNumeroCuota(contador);
                 return true;
             } 
         }

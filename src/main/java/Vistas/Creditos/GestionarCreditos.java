@@ -4,9 +4,12 @@
  */
 package Vistas.Creditos;
 
+import Vistas.Cuotas.CuotasRestantes;
 import Controladores.Creditos.ControladorCH;
 import Controladores.Creditos.ControladorCL;
 import Modelos.Datos.Cliente;
+import Vistas.Cuotas.AbonarCuota;
+import Vistas.Cuotas.CuotasAbonadas;
 import Vistas.VistaBanco;
 
 /**
@@ -45,7 +48,7 @@ public class GestionarCreditos extends javax.swing.JFrame {
         }
         
         if( !cliente.hasCreditoActivo() ){
-            btnConsultarCuotas.setEnabled(false);
+            btnConsultarCuotasRestantes.setEnabled(false);
             btnAbonarCuota.setEnabled(false);
         }else{
             btnCredito.setEnabled(false);
@@ -64,7 +67,8 @@ public class GestionarCreditos extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnAbonarCuota = new javax.swing.JButton();
         btnCredito = new javax.swing.JButton();
-        btnConsultarCuotas = new javax.swing.JButton();
+        btnConsultarCuotasRestantes = new javax.swing.JButton();
+        btnConsultarCuotasAbonadas = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,6 +76,11 @@ public class GestionarCreditos extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ELIGE UNA OPCION", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         btnAbonarCuota.setText("ABONAR CUOTA");
+        btnAbonarCuota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbonarCuotaActionPerformed(evt);
+            }
+        });
 
         btnCredito.setText("ADQUIRIR CREDITO");
         btnCredito.addActionListener(new java.awt.event.ActionListener() {
@@ -80,10 +89,17 @@ public class GestionarCreditos extends javax.swing.JFrame {
             }
         });
 
-        btnConsultarCuotas.setText("CONSULTAR CUOTAS RESTANTES");
-        btnConsultarCuotas.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultarCuotasRestantes.setText("CONSULTAR CUOTAS RESTANTES");
+        btnConsultarCuotasRestantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarCuotasActionPerformed(evt);
+                btnConsultarCuotasRestantesActionPerformed(evt);
+            }
+        });
+
+        btnConsultarCuotasAbonadas.setText("CONSULTAR CUOTAS ABONADAS");
+        btnConsultarCuotasAbonadas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarCuotasAbonadasActionPerformed(evt);
             }
         });
 
@@ -96,7 +112,8 @@ public class GestionarCreditos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnCredito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAbonarCuota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnConsultarCuotas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnConsultarCuotasRestantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnConsultarCuotasAbonadas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(86, 86, 86))
         );
         jPanel1Layout.setVerticalGroup(
@@ -104,8 +121,10 @@ public class GestionarCreditos extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(btnCredito)
+                .addGap(46, 46, 46)
+                .addComponent(btnConsultarCuotasAbonadas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(btnConsultarCuotas)
+                .addComponent(btnConsultarCuotasRestantes)
                 .addGap(46, 46, 46)
                 .addComponent(btnAbonarCuota)
                 .addGap(66, 66, 66))
@@ -139,7 +158,7 @@ public class GestionarCreditos extends javax.swing.JFrame {
                 .addComponent(btnVolver)
                 .addGap(35, 35, 35)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
@@ -164,14 +183,26 @@ public class GestionarCreditos extends javax.swing.JFrame {
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         VistaBanco banco = new VistaBanco();
         banco.setVisible(true);
-        //this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void btnConsultarCuotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCuotasActionPerformed
-        ConsultarCuotas cuotas = new ConsultarCuotas(this.cliente);
+    private void btnConsultarCuotasRestantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCuotasRestantesActionPerformed
+        CuotasRestantes cuotas = new CuotasRestantes(this.cliente);
         cuotas.setVisible(true);
-        //this.dispose();
-    }//GEN-LAST:event_btnConsultarCuotasActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnConsultarCuotasRestantesActionPerformed
+
+    private void btnAbonarCuotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbonarCuotaActionPerformed
+        AbonarCuota abonarCuota = new AbonarCuota(this.cliente);
+        abonarCuota.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAbonarCuotaActionPerformed
+
+    private void btnConsultarCuotasAbonadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCuotasAbonadasActionPerformed
+        CuotasAbonadas abonadas = new CuotasAbonadas(this.cliente);
+        abonadas.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnConsultarCuotasAbonadasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,7 +241,8 @@ public class GestionarCreditos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbonarCuota;
-    private javax.swing.JButton btnConsultarCuotas;
+    private javax.swing.JButton btnConsultarCuotasAbonadas;
+    private javax.swing.JButton btnConsultarCuotasRestantes;
     private javax.swing.JButton btnCredito;
     private javax.swing.JButton btnVolver;
     private javax.swing.JPanel jPanel1;
