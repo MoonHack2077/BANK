@@ -6,14 +6,54 @@ package Controladores.Creditos;
 
 import Modelos.Creditos.Credito;
 import Modelos.Creditos.CreditoHipotecario;
+import java.util.ArrayList;
 
 /**
  *
  * @author USER
  */
 public class ControladorCH extends ControladorCredito{
-    public ControladorCH( Credito credito ){
-        super(credito);
+    
+    private ArrayList<CreditoHipotecario> creditosHipotecarios;
+    
+    public ControladorCH(){
+        creditosHipotecarios = new ArrayList<>();
+    }
+    
+    /*
+    *****  CREDITO HIPOTECARIO
+    *creditoH se usa como abreviacion de credito Hipotecario
+    */
+    
+    
+    /**
+     * Metodo para saber si un credito hipotecario ya está almacenado
+     * @param numeroContrato
+     * @return credito hipotecario si ya esta almacenado, de lo contrario null
+     */
+    public CreditoHipotecario buscarCreditoH( int numeroContrato ){
+        
+        for (CreditoHipotecario creditoH : creditosHipotecarios) {
+            if( creditoH.getNumeroDeContrato() == numeroContrato ) return creditoH;
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Metodo para añadir un credito hipotecario
+     * @param creditoH
+     * @return true si se añadió, de lo contrario false
+     */
+    public boolean añadirCreditoH(CreditoHipotecario creditoH){
+        CreditoHipotecario aux = buscarCreditoH(creditoH.getNumeroDeContrato());
+        
+        if( aux == null ){
+            creditosHipotecarios.add(creditoH);
+            return true;
+        }
+        
+        return false;
     }
     
     /**
@@ -21,9 +61,9 @@ public class ControladorCH extends ControladorCredito{
      * @return 
      */
     @Override
-    public void calcularValorCuota(){
-        CreditoHipotecario creditoH = this.cB.buscarCreditoH(this.getNumeroContrato());
-        double soli = this.getValorSolicitado();
+    public void calcularValorCuota(Credito credito){
+        CreditoHipotecario creditoH = buscarCreditoH(credito.getNumeroDeContrato());
+        double soli = creditoH.getMontoTotal();
         int estrato = creditoH.getDomicilio().getEstrato();
         double valorTotal = creditoH.getValorCuota();
         
@@ -35,6 +75,14 @@ public class ControladorCH extends ControladorCredito{
         }
         valorTotal+=soli;
         creditoH.setValorCuota(valorTotal);
+    }
+    
+    
+    /**
+     * @return the creditosHipotecarios
+     */
+    public ArrayList<CreditoHipotecario> getCreditosHipotecarios() {
+        return creditosHipotecarios;
     }
     
 }
