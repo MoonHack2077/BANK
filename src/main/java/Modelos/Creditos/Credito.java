@@ -13,14 +13,17 @@ import Modelos.Datos.Cliente;
  */
 public class Credito {
    protected Cliente clienteSolicitante;
-   private Cuota[] cuotas;
+   protected Cuota[] cuotas;
    protected int numeroDeContrato;
    protected int cantidadCuotas;
    protected double montoTotal;
    protected double valorCuota;
+   protected String tipo;
+   protected int cuotasRestantes;
+   private int cuotasAbonadas;
    
    public Credito( int numeroDeContrato, double montoTotal, int cantidadCuotas, 
-           Cliente clienteSolicitante )
+           Cliente clienteSolicitante, String tipo )
    {
     this.numeroDeContrato = numeroDeContrato;
     cuotas = new Cuota[cantidadCuotas];
@@ -28,6 +31,7 @@ public class Credito {
     this.cantidadCuotas = cantidadCuotas;
     this.valorCuota = montoTotal/cantidadCuotas;
     this.clienteSolicitante = clienteSolicitante;
+    this.tipo = tipo;
    }
 
    
@@ -114,5 +118,47 @@ public class Credito {
      */
     public void setCuotas(Cuota[] cuotas) {
         this.cuotas = cuotas;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    /**
+     * @return the cuotasRestantes
+     */
+    public int getCuotasRestantes() {
+        return cuotasRestantes;
+    }
+
+    /**
+     * @param cuotasRestantes the cuotasRestantes to set
+     */
+    public void setCuotasRestantes(int cuotasRestantes) {
+        this.cuotasRestantes = cuotasRestantes;
+    }
+
+    /**
+     * @return the cuotasAbonadas
+     */
+    public int getCuotasAbonadas() {
+        return cuotasAbonadas;
+    }
+
+    /**
+     * @param cuotasAbonadas the cuotasAbonadas to set
+     */
+    public void setCuotasAbonadas(int cuotasAbonadas) {
+        this.cuotasAbonadas = cuotasAbonadas;
     }
 }

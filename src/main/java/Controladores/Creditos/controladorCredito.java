@@ -31,7 +31,7 @@ public abstract class ControladorCredito {
     /**
      * Metodo para calcular el valor total de la cuota
      */
-    public abstract double calcularValorCuota();
+    public abstract void calcularValorCuota();
     
     
     /**
@@ -58,15 +58,18 @@ public abstract class ControladorCredito {
      * Metodo para saber la cantidad de cuotas restantes
      * @return la cantidad de cuotas restantes
      */
-    public int cuotasRestantes(){
-        int contador = 0;
+    public void getCuotasRestantes(){
+        int contadorAbonadas = 0;
+        int contadorRestantes = 0;
         for (int i = 0; i < cuotas.length; i++) {
             if( cuotas[i] == null ){
-                contador++;
-            } 
+                contadorRestantes++;
+            }else {
+                contadorAbonadas++;
+            }
         }
-        
-        return contador;
+        this.credito.setCuotasRestantes(contadorRestantes);
+        this.credito.setCuotasAbonadas(contadorRestantes);
     }
 
     /**

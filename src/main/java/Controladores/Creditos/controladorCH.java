@@ -21,7 +21,7 @@ public class ControladorCH extends ControladorCredito{
      * @return 
      */
     @Override
-    public double calcularValorCuota(){
+    public void calcularValorCuota(){
         CreditoHipotecario creditoH = this.cB.buscarCreditoH(this.getNumeroContrato());
         double soli = this.getValorSolicitado();
         int estrato = creditoH.getDomicilio().getEstrato();
@@ -35,8 +35,6 @@ public class ControladorCH extends ControladorCredito{
         }
         valorTotal+=soli;
         creditoH.setValorCuota(valorTotal);
-        
-        return valorTotal;
     }
     
 }

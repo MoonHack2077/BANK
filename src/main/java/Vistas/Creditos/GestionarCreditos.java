@@ -5,6 +5,7 @@
 package Vistas.Creditos;
 
 import Controladores.Creditos.ControladorCH;
+import Controladores.Creditos.ControladorCL;
 import Modelos.Datos.Cliente;
 import Vistas.VistaBanco;
 
@@ -15,7 +16,8 @@ import Vistas.VistaBanco;
 public class GestionarCreditos extends javax.swing.JFrame {
 
     private Cliente cliente;
-    protected ControladorCH CC; //CC se usa como abreviacion de ControladorCredito
+    protected static ControladorCH CH; //CH se usa como abreviacion de ControladorCH
+    protected static ControladorCL CL; //Cl se usa como abreviacion de ControladorCL
     
     /**
      * Creates new form GestionarCreditos
@@ -34,7 +36,13 @@ public class GestionarCreditos extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.cliente = cliente;
         
-        if(cliente.getCredito() != null) this.CC = new ControladorCH(cliente.getCredito());
+        if(cliente.getCredito()!= null){
+            if(cliente.getCredito().getTipo().equals("Hipotecario")){
+                CH = new ControladorCH(cliente.getCredito());
+            }else{
+                CL = new ControladorCL(cliente.getCredito());
+            }
+        }
         
         if( !cliente.hasCreditoActivo() ){
             btnConsultarCuotas.setEnabled(false);
@@ -73,6 +81,11 @@ public class GestionarCreditos extends javax.swing.JFrame {
         });
 
         btnConsultarCuotas.setText("CONSULTAR CUOTAS RESTANTES");
+        btnConsultarCuotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarCuotasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,7 +154,7 @@ public class GestionarCreditos extends javax.swing.JFrame {
     private void btnCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreditoActionPerformed
         Creditos ventanaCreditos = new Creditos(this.cliente);
         ventanaCreditos.setVisible(true);
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_btnCreditoActionPerformed
 
     /**
@@ -151,8 +164,14 @@ public class GestionarCreditos extends javax.swing.JFrame {
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         VistaBanco banco = new VistaBanco();
         banco.setVisible(true);
-        this.dispose();
+        //this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnConsultarCuotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCuotasActionPerformed
+        ConsultarCuotas cuotas = new ConsultarCuotas(this.cliente);
+        cuotas.setVisible(true);
+        //this.dispose();
+    }//GEN-LAST:event_btnConsultarCuotasActionPerformed
 
     /**
      * @param args the command line arguments

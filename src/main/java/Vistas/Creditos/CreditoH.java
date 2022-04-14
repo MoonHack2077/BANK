@@ -331,7 +331,8 @@ public class CreditoH extends javax.swing.JFrame {
         Domicilio domicilio = new Domicilio(avaluo, direccion, estrato, nombre, documento);
               
         //Creando el credito
-        CreditoHipotecario creditoH = new CreditoHipotecario(contrato, monto, cuotas, this.cliente, fechaSolicitud, domicilio);
+        CreditoHipotecario creditoH = new CreditoHipotecario(contrato, monto, cuotas,
+                this.cliente, fechaSolicitud, domicilio, "Hipotecario");
                
         //Seteando los estados del credito del cliente
         this.cliente.setCreditoActivo(true);
@@ -340,6 +341,7 @@ public class CreditoH extends javax.swing.JFrame {
         //Validando si se pudo añadir el credito
         boolean añadido = VistaBanco.CB.añadirCreditoH(creditoH);
         if(añadido){
+            GestionarCreditos.CH.calcularValorCuota();
             JOptionPane.showMessageDialog(null, "Gracias por confiar en nosotros " + this.cliente.getNombre().toUpperCase() + " su credito ha sido creado");
             GestionarCreditos creditos = new GestionarCreditos(this.cliente);
             creditos.setVisible(true);

@@ -13,8 +13,9 @@ import Modelos.Datos.Cliente;
 public class CreditoLibre extends Credito {
     private int valorDataCredito;
     
-    public CreditoLibre(int numeroDeContrato, double montoTotal, int cantidadCuotas, Cliente clienteSolicitante ){
-        super(numeroDeContrato, montoTotal, cantidadCuotas, clienteSolicitante);
+    public CreditoLibre(int numeroDeContrato, double montoTotal, int cantidadCuotas, 
+            Cliente clienteSolicitante, String tipo ){
+        super(numeroDeContrato, montoTotal, cantidadCuotas, clienteSolicitante, tipo);
         this.valorDataCredito = clienteSolicitante.getValorDataCredito();
     }
 

@@ -189,7 +189,7 @@ public class CreditoL extends javax.swing.JFrame {
         int cuotas = Integer.parseInt(txtCuotas.getText());
         
         //Creando el credito
-        CreditoLibre creditoL = new CreditoLibre(contrato, monto, cuotas, this.cliente);
+        CreditoLibre creditoL = new CreditoLibre(contrato, monto, cuotas, this.cliente, "Libre inversion");
         
         
         //Seteando los estados del credito del cliente
@@ -199,6 +199,7 @@ public class CreditoL extends javax.swing.JFrame {
         //Validando si se pudo añadir el credito
         boolean creado = VistaBanco.CB.añadirCreditoL(creditoL);
         if(creado){
+            GestionarCreditos.CL.calcularValorCuota();
             JOptionPane.showMessageDialog(null, "Gracias por confiar en nosotros " + this.cliente.getNombre().toUpperCase() + " su credito ha sido creado");
             GestionarCreditos creditos = new GestionarCreditos(this.cliente);
             creditos.setVisible(true);

@@ -23,7 +23,7 @@ public class ControladorCL extends ControladorCredito {
      * @return 
      */
     @Override
-    public double calcularValorCuota(){
+    public void calcularValorCuota(){
         CreditoLibre creditoL = this.cB.buscarCreditoL(this.getNumeroContrato());
         double soli = this.getValorSolicitado();
         int valorData = creditoL.getValorDataCredito();
@@ -36,7 +36,6 @@ public class ControladorCL extends ControladorCredito {
         
         valorTotal+=soli;
         creditoL.setValorCuota(valorTotal);
-        return valorTotal;
     }
     
 }
