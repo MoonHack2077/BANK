@@ -67,4 +67,24 @@ public abstract class ControladorCredito {
         return true;
     }
 
+    /**
+     * Metodo para recopilar la info de las cuotas abonadas
+     * @return la cantidad de cuotas restantes
+     */
+    public String XDDD(Credito credito){
+        Cuota[] cuotas = credito.getCuotas();
+        String cadena = "";
+        for (int i = 0; i < cuotas.length; i++) {
+            if(cuotas[i] != null){
+                cadena += 
+            "Numero de cuota: "+ String.valueOf(cuotas[i].getNumeroCuota())+ "   " +
+            "Fecha de cancelacion: "+String.valueOf(cuotas[i].getFechaCancelacion())+ "   " +
+            "Valor de la cuota: "+String.valueOf(credito.getValorCuota())+ "   " +
+            "Monto abonado: "+ String.valueOf(cuotas[i].getMontoAbonado())+
+            "\n\n" ;
+            }
+        }
+        
+        return cadena;
+    }
 }

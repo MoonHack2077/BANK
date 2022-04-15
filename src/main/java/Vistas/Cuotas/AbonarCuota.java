@@ -202,12 +202,7 @@ public class AbonarCuota extends javax.swing.JFrame {
         Date fechaCancelacion = new Date(anio, mes, dia);
         
         Cuota cuota = new Cuota(fechaCancelacion, monto);
-        String[] detalles = {
-            String.valueOf(cuota.getNumeroCuota()),
-            String.valueOf(cuota.getFechaCancelacion()),
-            String.valueOf(this.credito.getValorCuota()),
-            String.valueOf(cuota.getMontoAbonado())
-        };
+        
         boolean xd;
         if( this.cliente.getCredito().getTipo().equals("Hipotecario") ){
             GestionarCreditos.CH.abonarCuota(this.credito, cuota);
@@ -223,8 +218,7 @@ public class AbonarCuota extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ha sido tu ultima cuota, gracias por confiar en nosotros");
         }
         
-        CA.addRow(detalles);
-        
+        //CA.ponerCuota(detalles);
     }//GEN-LAST:event_btnAbonarActionPerformed
 
     /**
