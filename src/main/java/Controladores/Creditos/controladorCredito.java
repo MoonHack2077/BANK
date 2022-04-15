@@ -48,7 +48,7 @@ public abstract class ControladorCredito {
      * Metodo para saber la cantidad de cuotas restantes
      * @return la cantidad de cuotas restantes
      */
-    public void calcularCuotasRestantes(Credito credito){
+    public boolean calcularCuotasRestantes(Credito credito){
         int contadorAbonadas = 0;
         int contadorRestantes = 0;
         Cuota[] cuotas = credito.getCuotas();
@@ -56,8 +56,15 @@ public abstract class ControladorCredito {
             if( cuotas[i] == null ) contadorRestantes++;
             else contadorAbonadas++;
         }
+        
+        if( contadorRestantes==0 ){
+            credito.getClienteSolicitante().setCreditoActivo(false);
+            credito.getClienteSolicitante().setCredito(null);
+            return false;
+        }
         credito.setCuotasRestantes(contadorRestantes);
         credito.setCuotasAbonadas(contadorAbonadas);
+        return true;
     }
 
 }

@@ -19,6 +19,7 @@ public class AbonarCuota extends javax.swing.JFrame {
 
     private Cliente cliente;
     private Credito credito;
+    private CuotasAbonadas CA = new CuotasAbonadas();
     /**
      * Creates new form AbonarCuota
      */
@@ -186,7 +187,7 @@ public class AbonarCuota extends javax.swing.JFrame {
     private void btnAbonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbonarActionPerformed
         //Obteniendo el monto
         int monto = Integer.parseInt(txtMontoCancelado.getText());
-        if( monto < cliente.getCredito().getValorCuota() ){
+        if( monto != cliente.getCredito().getValorCuota() ){
             JOptionPane.showMessageDialog(null, "El monto a abonar debe ser lo mismo que el valor a cancelar");
             return;
         }
@@ -201,17 +202,29 @@ public class AbonarCuota extends javax.swing.JFrame {
         Date fechaCancelacion = new Date(anio, mes, dia);
         
         Cuota cuota = new Cuota(fechaCancelacion, monto);
-        
+        String[] detalles = {
+            String.valueOf(cuota.getNumeroCuota()),
+            String.valueOf(cuota.getFechaCancelacion()),
+            String.valueOf(this.credito.getValorCuota()),
+            String.valueOf(cuota.getMontoAbonado())
+        };
+        boolean xd;
         if( this.cliente.getCredito().getTipo().equals("Hipotecario") ){
             GestionarCreditos.CH.abonarCuota(this.credito, cuota);
-            GestionarCreditos.CH.calcularCuotasRestantes(this.credito);
+            xd = GestionarCreditos.CH.calcularCuotasRestantes(this.credito);
         }else{
             GestionarCreditos.CL.abonarCuota(this.credito, cuota);
-            GestionarCreditos.CL.calcularCuotasRestantes(this.credito);
+            xd = GestionarCreditos.CL.calcularCuotasRestantes(this.credito);
         }
         
-
-        JOptionPane.showMessageDialog(null, "Se ha abonado la cuota!!!");
+        if(xd){
+            JOptionPane.showMessageDialog(null, "Se ha abonado la cuota!!!");
+        }else{
+            JOptionPane.showMessageDialog(null, "Ha sido tu ultima cuota, gracias por confiar en nosotros");
+        }
+        
+        CA.addRow(detalles);
+        
     }//GEN-LAST:event_btnAbonarActionPerformed
 
     /**
