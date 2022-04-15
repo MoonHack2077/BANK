@@ -28,6 +28,7 @@ public class CuotasRestantes extends javax.swing.JFrame {
     public CuotasRestantes(Cliente cliente) {
         initComponents();
         setLocationRelativeTo(null);
+        this.cliente = cliente;
         
         lblCliente.setText(cliente.getNombre());
         lblDocumento.setText(String.valueOf(cliente.getDocumento()));

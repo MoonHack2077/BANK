@@ -4,7 +4,12 @@
  */
 package Vistas.Cuotas;
 
+import Modelos.Creditos.Credito;
+import Modelos.Cuota.Cuota;
 import Modelos.Datos.Cliente;
+import Vistas.Creditos.GestionarCreditos;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,6 +17,8 @@ import Modelos.Datos.Cliente;
  */
 public class AbonarCuota extends javax.swing.JFrame {
 
+    private Cliente cliente;
+    private Credito credito;
     /**
      * Creates new form AbonarCuota
      */
@@ -26,7 +33,8 @@ public class AbonarCuota extends javax.swing.JFrame {
     public AbonarCuota(Cliente cliente) {
         initComponents();
         setLocationRelativeTo(null);
-        
+        this.cliente = cliente;
+        this.credito = cliente.getCredito();
         lblCliente.setText(cliente.getNombre());
         lblValorCancelar.setText(String.valueOf(cliente.getCredito().getValorCuota()));
     }
@@ -61,6 +69,11 @@ public class AbonarCuota extends javax.swing.JFrame {
         jLabel1.setText("Valor a cancelar:");
 
         btnAbonar.setText("Abonar");
+        btnAbonar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbonarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Monto para abonar:");
 
@@ -131,6 +144,11 @@ public class AbonarCuota extends javax.swing.JFrame {
         );
 
         btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,6 +176,43 @@ public class AbonarCuota extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        GestionarCreditos gestionar = new GestionarCreditos(this.cliente);
+        gestionar.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnAbonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbonarActionPerformed
+        //Obteniendo el monto
+        int monto = Integer.parseInt(txtMontoCancelado.getText());
+        if( monto < cliente.getCredito().getValorCuota() ){
+            JOptionPane.showMessageDialog(null, "El monto a abonar debe ser lo mismo que el valor a cancelar");
+            return;
+        }
+        
+        
+        //Parseando los datos a enteros para crear la fecha
+        int dia = Integer.parseInt(cbxDia.getSelectedItem().toString());
+        int mes = Integer.parseInt(cbxMes.getSelectedItem().toString());
+        int anio = Integer.parseInt(txtAño.getText());
+        
+        //Creando la fecha de solicitud
+        Date fechaCancelacion = new Date(anio, mes, dia);
+        
+        Cuota cuota = new Cuota(fechaCancelacion, monto);
+        
+        if( this.cliente.getCredito().getTipo().equals("Hipotecario") ){
+            GestionarCreditos.CH.abonarCuota(this.credito, cuota);
+            GestionarCreditos.CH.calcularCuotasRestantes(this.credito);
+        }else{
+            GestionarCreditos.CL.abonarCuota(this.credito, cuota);
+            GestionarCreditos.CL.calcularCuotasRestantes(this.credito);
+        }
+        
+
+        JOptionPane.showMessageDialog(null, "Se ha abonado la cuota!!!");
+    }//GEN-LAST:event_btnAbonarActionPerformed
 
     /**
      * @param args the command line arguments

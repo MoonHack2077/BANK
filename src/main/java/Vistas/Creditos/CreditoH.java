@@ -342,6 +342,7 @@ public class CreditoH extends javax.swing.JFrame {
         boolean añadido = GestionarCreditos.CH.añadirCreditoH(creditoH);
         if(añadido){
             GestionarCreditos.CH.calcularValorCuota(creditoH);
+            GestionarCreditos.CH.calcularCuotasRestantes(creditoH);
             JOptionPane.showMessageDialog(null, "Gracias por confiar en nosotros " + this.cliente.getNombre().toUpperCase() + " su credito ha sido creado");
             GestionarCreditos creditos = new GestionarCreditos(this.cliente);
             creditos.setVisible(true);

@@ -15,18 +15,13 @@ import javax.swing.table.DefaultTableModel;
 public class CuotasAbonadas extends javax.swing.JFrame {
 
     private Cliente cliente;
-    private DefaultTableModel model;
+    private DefaultTableModel model = new DefaultTableModel();
     /**
      * Creates new form CuotasAbonadas
      */
     public CuotasAbonadas() {
         initComponents();
         setLocationRelativeTo(null);
-        model = new DefaultTableModel();
-        model.addColumn("Numero de cuota");
-        model.addColumn("Fecha de cancelacion");
-        model.addColumn("monto");
-        this.tabla.setModel(model);
     }
 
     /**
@@ -37,13 +32,13 @@ public class CuotasAbonadas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.cliente = cliente;
         lblCliente.setText(cliente.getNombre());
-        lblDocumento.setText(String.valueOf(cliente.getCredito().getNumeroDeContrato()));
-        
-        model = new DefaultTableModel();
-        model.addColumn("Numero de cuota");
-        model.addColumn("Fecha de cancelacion");
-        model.addColumn("Valor de la cuota");
-        model.addColumn("monto");
+        lblDocumento.setText(String.valueOf(cliente.getDocumento()));
+        //lblNumeroContrato.setText(String.valueOf(cliente.getCredito().getNumeroDeContrato()));
+                
+        this.model.addColumn("Numero de cuota");
+        this.model.addColumn("Fecha de cancelacion");
+        this.model.addColumn("Valor de la cuota");
+        this.model.addColumn("monto");
         this.tabla.setModel(model);
     }
     /**
@@ -125,8 +120,8 @@ public class CuotasAbonadas extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(lblNumeroContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(309, 309, 309))
         );
 
         btnVolver.setText("Volver");
@@ -162,15 +157,22 @@ public class CuotasAbonadas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   
+   /**
+    * Metodo para volver a la ventana de gestionar creditos
+    * @param evt 
+    */
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         GestionarCreditos gestionar = new GestionarCreditos(this.cliente);
         gestionar.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    protected void addRow(String[] detalleCuota){
-        model.addRow(detalleCuota);
+    /**
+     * Metodo para insertar una cuota abonada a la tabla
+     * @param detalleCuota 
+     */
+    public void addRow(String[] detalleCuota){
+        this.model.addRow(detalleCuota);
     }
     
     /**

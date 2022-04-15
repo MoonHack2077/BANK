@@ -28,7 +28,7 @@ public class ControladorBanco {
      * @return 
      */
     public int generarValorDataCredito(){
-        return (int)Math.floor(Math.random()*(400 - 250 + 1)+250 );
+        return (int)Math.floor(Math.random()*(400 - 250 + 1) + 250 );
     }
     
     /**

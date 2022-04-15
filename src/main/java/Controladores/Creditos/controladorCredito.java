@@ -28,9 +28,6 @@ public abstract class ControladorCredito {
      * @return true si se abonó, de lo contrario false
      */
     public boolean abonarCuota(Credito credito, Cuota cuota){
-        
-        //LOOK OUT THIS PART
-        if( cuota.getMontoAbonado() < credito.getValorCuota() ) return false;
         int contador = 0;
         Cuota[] cuotas = credito.getCuotas();
         
@@ -51,19 +48,16 @@ public abstract class ControladorCredito {
      * Metodo para saber la cantidad de cuotas restantes
      * @return la cantidad de cuotas restantes
      */
-    public void getCuotasRestantes(Credito credito){
+    public void calcularCuotasRestantes(Credito credito){
         int contadorAbonadas = 0;
         int contadorRestantes = 0;
         Cuota[] cuotas = credito.getCuotas();
         for (int i = 0; i < cuotas.length; i++) {
-            if( cuotas[i] == null ){
-                contadorRestantes++;
-            }else {
-                contadorAbonadas++;
-            }
+            if( cuotas[i] == null ) contadorRestantes++;
+            else contadorAbonadas++;
         }
         credito.setCuotasRestantes(contadorRestantes);
-        credito.setCuotasAbonadas(contadorRestantes);
+        credito.setCuotasAbonadas(contadorAbonadas);
     }
 
 }

@@ -6,7 +6,6 @@ package Vistas.Creditos;
 
 import Modelos.Creditos.CreditoLibre;
 import Modelos.Datos.Cliente;
-import Vistas.VistaBanco;
 import javax.swing.JOptionPane;
 
 /**
@@ -190,8 +189,7 @@ public class CreditoL extends javax.swing.JFrame {
         
         //Creando el credito
         CreditoLibre creditoL = new CreditoLibre(contrato, monto, cuotas, this.cliente, "Libre inversion");
-        
-        
+             
         //Seteando los estados del credito del cliente
         this.cliente.setCreditoActivo(true);
         this.cliente.setCredito(creditoL);
@@ -200,6 +198,7 @@ public class CreditoL extends javax.swing.JFrame {
         boolean creado = GestionarCreditos.CL.añadirCreditoL(creditoL);
         if(creado){
             GestionarCreditos.CL.calcularValorCuota(creditoL);
+            GestionarCreditos.CL.calcularCuotasRestantes(creditoL);
             JOptionPane.showMessageDialog(null, "Gracias por confiar en nosotros " + this.cliente.getNombre().toUpperCase() + " su credito ha sido creado");
             GestionarCreditos creditos = new GestionarCreditos(this.cliente);
             creditos.setVisible(true);

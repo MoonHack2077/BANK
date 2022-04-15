@@ -19,8 +19,8 @@ import Vistas.VistaBanco;
 public class GestionarCreditos extends javax.swing.JFrame {
 
     private Cliente cliente;
-    protected static ControladorCH CH = new ControladorCH();; //CH se usa como abreviacion de ControladorCH
-    protected static ControladorCL CL = new ControladorCL();; //Cl se usa como abreviacion de ControladorCL
+    public static ControladorCH CH = new ControladorCH(); //CH se usa como abreviacion de ControladorCH
+    public static ControladorCL CL = new ControladorCL(); //Cl se usa como abreviacion de ControladorCL
     
     /**
      * Creates new form GestionarCreditos
@@ -180,7 +180,7 @@ public class GestionarCreditos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
-     * 
+     * Metodo para ir a la ventana de consultar las cuotas restantes
      * @param evt 
      */
     private void btnConsultarCuotasRestantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCuotasRestantesActionPerformed
@@ -190,7 +190,7 @@ public class GestionarCreditos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarCuotasRestantesActionPerformed
 
     /**
-     * 
+     * Metodo para ir a la ventana de abonar cuotas
      * @param evt 
      */
     private void btnAbonarCuotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbonarCuotaActionPerformed
@@ -200,7 +200,7 @@ public class GestionarCreditos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAbonarCuotaActionPerformed
 
     /**
-     * 
+     * Metodo para ir a la ventana de consultar las cuotas abonadas
      * @param evt 
      */
     private void btnConsultarCuotasAbonadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCuotasAbonadasActionPerformed
