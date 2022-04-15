@@ -16,8 +16,10 @@ import javax.swing.JOptionPane;
 public class VistaBanco extends javax.swing.JFrame {
 
     //Instanciando el controlador del banco
-    public static ControladorBanco CB = new ControladorBanco();
-;
+    public static ControladorBanco CB = new ControladorBanco(); //CB => Abreviacion de controlador banco
+    
+    //Instanciando la validacion
+    public static Validacion validacion = new Validacion();
     
     /**
      * Creates new form VistaBanco

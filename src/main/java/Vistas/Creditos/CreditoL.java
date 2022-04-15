@@ -33,7 +33,6 @@ public class CreditoL extends javax.swing.JFrame {
         
         /*
         * Al iniciar el componente se inserta el valor de data credito del cliente
-        * para mejorar la experiencia del usuario
         */
         txtDataCredito.setText(String.valueOf(cliente.getValorDataCredito()));
     }

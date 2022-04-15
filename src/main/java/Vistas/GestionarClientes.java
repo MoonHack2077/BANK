@@ -58,6 +58,30 @@ public class GestionarClientes extends javax.swing.JFrame {
 
         jLabel5.setText("Edad");
 
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
+        txtDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDocumentoKeyTyped(evt);
+            }
+        });
+
+        txtEdad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEdadKeyTyped(evt);
+            }
+        });
+
+        txtEstrato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEstratoKeyTyped(evt);
+            }
+        });
+
         btnAñadir.setText("AÑADIR");
         btnAñadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -295,6 +319,43 @@ public class GestionarClientes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No se pudo eliminar al cliente");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    
+    
+    /*  EVENTOS PARA SUPERVISAR LO QUE DIGITA EL USUARIO  */
+    
+    /**
+     * Metodo para que el usuario solo digite letras en el textField del nombre
+     * @param evt 
+     */
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        VistaBanco.validacion.soloLetras(evt);
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    /**
+     * Metodo para que el usuario solo digite numeros en el textField del documento
+     * @param evt 
+     */
+    private void txtDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDocumentoKeyTyped
+        VistaBanco.validacion.soloNumeros(evt);
+        
+    }//GEN-LAST:event_txtDocumentoKeyTyped
+
+    /**
+     * Metodo para que el usuario solo digite numeros en el textField de la edad
+     * @param evt 
+     */
+    private void txtEdadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadKeyTyped
+        VistaBanco.validacion.soloNumeros(evt);
+    }//GEN-LAST:event_txtEdadKeyTyped
+
+    /**
+     * Metodo para que el usuario solo digite numeros en el textField del estrato
+     * @param evt 
+     */
+    private void txtEstratoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEstratoKeyTyped
+        VistaBanco.validacion.soloNumeros(evt);
+    }//GEN-LAST:event_txtEstratoKeyTyped
 
     /**
      * @param args the command line arguments
