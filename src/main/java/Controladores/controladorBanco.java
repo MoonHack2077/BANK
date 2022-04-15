@@ -13,23 +13,13 @@ import java.util.ArrayList;
  */
 public class ControladorBanco {
     private ArrayList<Cliente> clientes;
-    //private ArrayList<Domicilio> domicilios;
     
     public ControladorBanco(){
         clientes = new ArrayList<>();
-        //domicilios = new ArrayList<>();
     }
 
     
-    /************** CRUD DE CLIENTES ***************/
-    
-    /**
-     * Metodo para generar un valor de data credito entre 250 y 400
-     * @return 
-     */
-    public int generarValorDataCredito(){
-        return (int)Math.floor(Math.random()*(400 - 250 + 1) + 250 );
-    }
+    /*************** CRUD DE CLIENTES ***************/
     
     /**
      * Metodo para saber si un cliente ya está almacenado
@@ -92,10 +82,6 @@ public class ControladorBanco {
         if( aux != null ){
             for (int i = 0; i < clientes.size(); i++) {
                 if( clientes.get(i).getDocumento() == cliente.getDocumento() ){
-                    
-                    //El valor de data credito debe ser un valor entre 250 y 400
-                    if( cliente.getValorDataCredito()<250 || cliente.getValorDataCredito()>400 ) return false;
-                    
                     //Inyectando los nuevos valores
                     clientes.get(i).setEstrato(cliente.getEstrato());
                     clientes.get(i).setNombre(cliente.getNombre());

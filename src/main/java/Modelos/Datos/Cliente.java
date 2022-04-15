@@ -10,17 +10,16 @@ import Modelos.Creditos.Credito;
  *
  * @author USER
  */
-public class Cliente extends Datos{
+public class Cliente extends DatosClienteDomicilio{
     private Credito credito;
     private boolean creditoActivo;
     private int valorDataCredito;
     private int edad;
 
-    public Cliente( int valorDataCredito, int estrato, 
+    public Cliente( int estrato, 
             String nombre, int documentoTitular, int edad )
     {
         super(estrato, nombre, documentoTitular);
-        this.valorDataCredito = valorDataCredito;
         this.creditoActivo = false;
         this.edad = edad;
     }

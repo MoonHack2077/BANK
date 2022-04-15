@@ -6,6 +6,7 @@ package Vistas.Creditos;
 
 import Modelos.Creditos.CreditoLibre;
 import Modelos.Datos.Cliente;
+import Vistas.VistaBanco;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,6 +16,7 @@ import javax.swing.JOptionPane;
 public class CreditoL extends javax.swing.JFrame {
 
     private Cliente cliente;
+    int valorDataCredito;
     
     /**
      * Creates new form CreditoL
@@ -30,11 +32,12 @@ public class CreditoL extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.cliente = cliente;
+        this.valorDataCredito = GestionarCreditos.CL.generarValorDataCredito();
         
         /*
         * Al iniciar el componente se inserta el valor de data credito del cliente
         */
-        txtDataCredito.setText(String.valueOf(cliente.getValorDataCredito()));
+        txtDataCredito.setText(String.valueOf(this.valorDataCredito));
     }
 
     /**
@@ -71,9 +74,27 @@ public class CreditoL extends javax.swing.JFrame {
 
         jLabel11.setText("Ingrese el numero de contrato: ");
 
+        txtContrato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtContratoKeyTyped(evt);
+            }
+        });
+
         jLabel12.setText("Monto Total:");
 
+        txtMonto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMontoKeyTyped(evt);
+            }
+        });
+
         jLabel13.setText("Cantidad de cuotas");
+
+        txtCuotas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCuotasKeyTyped(evt);
+            }
+        });
 
         jLabel1.setText("Su valor de data credito es: ");
 
@@ -181,6 +202,16 @@ public class CreditoL extends javax.swing.JFrame {
      * @param evt 
      */
     private void brnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnCrearActionPerformed
+        // Validando si hay campos vacios
+        if( txtContrato.getText().isEmpty() 
+            || txtMonto.getText().isEmpty()
+            || txtCuotas.getText().isEmpty()
+                    )
+        {
+            JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
+            return;
+        }
+
         //Obteniendo los datos del usuario
         int contrato = Integer.parseInt(txtContrato.getText());
         double monto = Double.parseDouble(txtMonto.getText());
@@ -188,10 +219,13 @@ public class CreditoL extends javax.swing.JFrame {
         
         //Creando el credito
         CreditoLibre creditoL = new CreditoLibre(contrato, monto, cuotas, this.cliente, "Libre inversion");
-             
+        
         //Seteando los estados del credito del cliente
         this.cliente.setCreditoActivo(true);
         this.cliente.setCredito(creditoL);
+        
+        //Seteando el valor de data credito del cliente
+        this.cliente.setValorDataCredito(this.valorDataCredito);
         
         //Validando si se pudo añadir el credito
         boolean creado = GestionarCreditos.CL.añadirCreditoL(creditoL);
@@ -206,6 +240,32 @@ public class CreditoL extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "NO se ha podido crear su credito");
         }
     }//GEN-LAST:event_brnCrearActionPerformed
+
+    /*  EVENTOS PARA SUPERVISAR LO QUE DIGITA EL USUARIO  */
+    
+    /**
+     * Metodo para que el usuario solo digite numeros en el textField del numero de contrato
+     * @param evt 
+     */
+    private void txtContratoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContratoKeyTyped
+        VistaBanco.validacion.soloNumeros(evt);
+    }//GEN-LAST:event_txtContratoKeyTyped
+
+    /**
+     * Metodo para que el usuario solo digite numeros en el textField del monto
+     * @param evt 
+     */
+    private void txtMontoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoKeyTyped
+        VistaBanco.validacion.soloNumeros(evt);
+    }//GEN-LAST:event_txtMontoKeyTyped
+
+    /**
+     * Metodo para que el usuario solo digite numeros en el textField de la cantidad de cuotas
+     * @param evt 
+     */
+    private void txtCuotasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCuotasKeyTyped
+        VistaBanco.validacion.soloNumeros(evt);
+    }//GEN-LAST:event_txtCuotasKeyTyped
 
     /**
      * @param args the command line arguments

@@ -31,11 +31,6 @@ public class Creditos extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.cliente = cliente;
-        
-        if(this.cliente.hasCreditoActivo()){
-            btnCreditoH.setEnabled(false);
-            btnCreditoL.setEnabled(false);
-        }
     }
 
     /**
@@ -123,24 +118,17 @@ public class Creditos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * Metodo para volver a la ventana de gestionar creditos
-     */
-    public void regresar(){
-        GestionarCreditos creditos = new GestionarCreditos(this.cliente);
-        creditos.setVisible(true);
-        this.dispose();
-    }
-    
+  
     /** EVENTOS DE BOTONES **/
     
     /**
-     * Metodo que ejecuta la funcion regresar mediante el boton volver
+     * Metodo para volver a la ventana de gestionar creditos
      * @param evt 
      */
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        regresar();
+        GestionarCreditos creditos = new GestionarCreditos(this.cliente);
+        creditos.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     /**

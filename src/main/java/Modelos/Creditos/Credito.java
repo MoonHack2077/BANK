@@ -14,19 +14,19 @@ import Modelos.Datos.Cliente;
 public class Credito {
    protected Cliente clienteSolicitante;
    protected Cuota[] cuotas;
-   protected int numeroDeContrato;
-   protected int cantidadCuotas;
+   protected String tipo;
    protected double montoTotal;
    protected double valorCuota;
-   protected String tipo;
+   protected int numeroDeContrato;
+   protected int cantidadCuotas;
    protected int cuotasRestantes;
-   private int cuotasAbonadas;
+   protected int cuotasAbonadas;
    
    public Credito( int numeroDeContrato, double montoTotal, int cantidadCuotas, 
            Cliente clienteSolicitante, String tipo )
    {
     this.numeroDeContrato = numeroDeContrato;
-    cuotas = new Cuota[cantidadCuotas];
+    this.cuotas = new Cuota[cantidadCuotas];
     this.montoTotal = montoTotal;
     this.cantidadCuotas = cantidadCuotas;
     this.valorCuota = montoTotal/cantidadCuotas;
@@ -111,13 +111,6 @@ public class Credito {
      */
     public Cuota[] getCuotas() {
         return cuotas;
-    }
-
-    /**
-     * @param cuotas the cuotas to set
-     */
-    public void setCuotas(Cuota[] cuotas) {
-        this.cuotas = cuotas;
     }
 
     /**

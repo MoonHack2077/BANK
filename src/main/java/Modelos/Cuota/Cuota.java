@@ -11,7 +11,6 @@ import java.util.Date;
  * @author USER
  */
 public class Cuota {
-    //private boolean pagada;
     private double montoAbonado;
     private int numeroCuota;
     private Date fechaCancelacion;
@@ -19,8 +18,6 @@ public class Cuota {
     public Cuota(Date fechaCancelacion, double monto){
         this.fechaCancelacion = fechaCancelacion;
         this.montoAbonado = monto;
-        //this.numeroCuota = numeroCuota;
-        //this.pagada = true;
     }
 
     /**
@@ -51,20 +48,6 @@ public class Cuota {
         this.numeroCuota = numeroCuota;
     }
 
-    /**
-     * @return the pagada
-     
-    public boolean isPagada() {
-        return pagada;
-    }
-
-    /**
-     * @param pagada the pagada to set
-     
-    public void setPagada(boolean pagada) {
-        this.pagada = pagada;
-    }
-*/
     /**
      * @return the monto
      */

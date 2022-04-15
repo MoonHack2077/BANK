@@ -33,13 +33,11 @@ public class CreditoH extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.cliente = cliente;
         
-        /*
-        * Al iniciar el componente se insertan los valores que vienen con el cliente
-        * para mejorar la experiencia del usuario
-        */
-        txtNombre.setText(cliente.getNombre());
-        txtDocumento.setText(String.valueOf(cliente.getDocumento()));
-        txtEstrato.setText(String.valueOf(cliente.getEstrato()));
+        
+        // Al iniciar el componente se insertan los valores que vienen con el cliente
+        lblNombre.setText(cliente.getNombre());
+        lblDocumento.setText(String.valueOf(cliente.getDocumento()));
+        lblEstrato.setText(String.valueOf(cliente.getEstrato()));
     }
 
     /**
@@ -68,17 +66,17 @@ public class CreditoH extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtAvaluo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtDocumento = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        txtEstrato = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         txtContrato = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         txtMonto = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         txtCuotas = new javax.swing.JTextField();
+        lblNombre = new javax.swing.JLabel();
+        lblDocumento = new javax.swing.JLabel();
+        lblEstrato = new javax.swing.JLabel();
         btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -111,8 +109,24 @@ public class CreditoH extends javax.swing.JFrame {
         cbxMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mes", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
         txtAño.setText("AÑO");
+        txtAño.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtAñoFocusGained(evt);
+            }
+        });
+        txtAño.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAñoKeyTyped(evt);
+            }
+        });
 
         jLabel4.setText("Avaluo comercial:");
+
+        txtAvaluo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAvaluoKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("Nombre");
 
@@ -122,9 +136,27 @@ public class CreditoH extends javax.swing.JFrame {
 
         jLabel11.setText("Ingrese el numero de contrato: ");
 
+        txtContrato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtContratoKeyTyped(evt);
+            }
+        });
+
         jLabel12.setText("Monto Total:");
 
+        txtMonto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMontoKeyTyped(evt);
+            }
+        });
+
         jLabel13.setText("Cantidad de cuotas");
+
+        txtCuotas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCuotasKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,11 +165,8 @@ public class CreditoH extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel9)
                     .addComponent(jLabel4)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel5)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(93, 93, 93)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,13 +200,6 @@ public class CreditoH extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtAño, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(159, 159, 159)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtAvaluo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtEstrato, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel12)
@@ -185,7 +207,24 @@ public class CreditoH extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtCuotas, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
-                                .addComponent(txtMonto)))))
+                                .addComponent(txtMonto)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(114, 114, 114))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(42, 42, 42)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel10)
+                                    .addGap(117, 117, 117)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtAvaluo, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                                .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblDocumento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblEstrato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGap(0, 26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -205,25 +244,25 @@ public class CreditoH extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(txtCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblDocumento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(txtEstrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblEstrato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAvaluo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
@@ -272,15 +311,13 @@ public class CreditoH extends javax.swing.JFrame {
                 .addComponent(btnVolver)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
   
-    
-    
     /** EVENTO DEL BOTON CREAR **/
     
     /**
@@ -288,11 +325,29 @@ public class CreditoH extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+ 
+        //Validando la fecha
+        if( cbxDia.getSelectedIndex() == 0 || cbxMes.getSelectedIndex() == 0 
+                || txtAño.getText().equals("AÑO") )
+        {
+            JOptionPane.showMessageDialog(null, "Fecha no valida");
+            return;
+        }
+
+        // Validando si hay campos vacios
+        if( txtAvaluo.getText().isEmpty() || txtMonto.getText().isEmpty()
+            || txtContrato.getText().isEmpty() || txtCuotas.getText().isEmpty()
+                || txtAño.getText().isEmpty()
+                    ){
+            JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
+            return;
+        }
+
         //Obteniendo los datos del domicilio
-        String nombre = txtNombre.getText();
-        int documento = Integer.parseInt(txtDocumento.getText());
+        String nombre = lblNombre.getText();
+        int documento = Integer.parseInt(lblDocumento.getText());
         double avaluo = Double.parseDouble(txtAvaluo.getText());
-        int estrato = Integer.parseInt(txtEstrato.getText());
+        int estrato = Integer.parseInt(lblEstrato.getText());
         
         //Obteniendo los datos de las cuotas, el monto total y el numero de contrato
         double monto = Double.parseDouble(txtMonto.getText());
@@ -304,29 +359,35 @@ public class CreditoH extends javax.swing.JFrame {
         int mes = Integer.parseInt(cbxMes.getSelectedItem().toString());
         int anio = Integer.parseInt(txtAño.getText());
         
-        //VALIDAR QUE EL DIA CORRESPONDA CON EL MES Y EL AÑO
-        /*
-        if( mes==2 && dia>=30 && anio%4!=0 ){
+        
+        //En caso de que el mes sea 2 (febrero), validar si los dias y el año corresponden
+        if( mes == 2 && dia >= 30 ){
             JOptionPane.showMessageDialog(null, "Febrero no tiene esos dias");
+            return;
         }
-        */
+        
+        //En caso de que el mes sea 2 (febrero), validar si es un año bisiesto
+        if( mes == 2 && dia == 29 && anio % 4 != 0 ){
+            JOptionPane.showMessageDialog(null, "Febrero no tiene esos dias");
+            return;
+        }
+        
+        // los meses 4, 6, 9 y 11 solo tienen 30 dias
+        if( (mes==4 || mes==6 || mes==9 || mes==11 ) && (dia==31) ){
+            JOptionPane.showMessageDialog(null, "El mes seleccionado no tiene esa cantidad de dias");
+            return;
+        }
+        
         
         //Creando la fecha de solicitud
-        Date fechaSolicitud = new Date(anio, mes, dia);
+        Date fechaSolicitud = new Date(anio, mes-1, dia);
              
         //Obteniendo la direccion
         String carrera = txtCarrera.getText();
         String numeroUno = txtNumeroUno.getText();
         String numeroDos = txtNumeroDos.getText();
         String direccion = carrera + " " + numeroUno + " " + numeroDos ;
-        
-        /*
-        String[] partesDireccion = direccion.split(" ");
-        txtCarrera.setText(partesDireccion[0]);
-        txtNumeroUno.setText(partesDireccion[1]);
-        txtNumeroDos.setText(partesDireccion[2]);
-        */
-        
+
         //Creando el docmicilio
         Domicilio domicilio = new Domicilio(avaluo, direccion, estrato, nombre, documento);
               
@@ -362,6 +423,61 @@ public class CreditoH extends javax.swing.JFrame {
         creditos.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    
+    
+    /*** EVENTOS ***/
+        
+    /**
+     * Metodo para que se le quite el "placeholder" al textField del año
+     * @param evt 
+     */
+    private void txtAñoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAñoFocusGained
+        if(txtAño.getText().equals("AÑO")) txtAño.setText("");
+    }//GEN-LAST:event_txtAñoFocusGained
+
+    
+    /** EVENTOS PARA SUPERVISAR LO QUE DIGITA EL USUARIO**/
+    
+    /**
+     * Metodo para que el usuario solo digite numeros en el textField del numero de contrato
+     * @param evt 
+     */
+    private void txtContratoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContratoKeyTyped
+        VistaBanco.validacion.soloNumeros(evt);
+    }//GEN-LAST:event_txtContratoKeyTyped
+
+    /**
+     * Metodo para que el usuario solo digite numeros en el textField del monto
+     * @param evt 
+     */
+    private void txtMontoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoKeyTyped
+        VistaBanco.validacion.soloNumeros(evt);
+    }//GEN-LAST:event_txtMontoKeyTyped
+
+    /**
+     * Metodo para que el usuario solo digite numeros en el textField de la cantidad de cuotas
+     * @param evt 
+     */
+    private void txtCuotasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCuotasKeyTyped
+        VistaBanco.validacion.soloNumeros(evt);
+    }//GEN-LAST:event_txtCuotasKeyTyped
+
+    /**
+     * Metodo para que el usuario solo digite numeros en el textField del avaluo comercial
+     * @param evt 
+     */
+    private void txtAvaluoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAvaluoKeyTyped
+        VistaBanco.validacion.soloNumeros(evt);
+    }//GEN-LAST:event_txtAvaluoKeyTyped
+
+    /**
+     * Metodo para que el usuario solo digite numeros en el textField del año
+     * @param evt 
+     */
+    private void txtAñoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAñoKeyTyped
+        VistaBanco.validacion.soloNumeros(evt);
+    }//GEN-LAST:event_txtAñoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -417,15 +533,15 @@ public class CreditoH extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblDocumento;
+    private javax.swing.JLabel lblEstrato;
+    private javax.swing.JLabel lblNombre;
     private javax.swing.JTextField txtAvaluo;
     private javax.swing.JTextField txtAño;
     private javax.swing.JTextField txtCarrera;
     private javax.swing.JTextField txtContrato;
     private javax.swing.JTextField txtCuotas;
-    private javax.swing.JTextField txtDocumento;
-    private javax.swing.JTextField txtEstrato;
     private javax.swing.JTextField txtMonto;
-    private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNumeroDos;
     private javax.swing.JTextField txtNumeroUno;
     // End of variables declaration//GEN-END:variables

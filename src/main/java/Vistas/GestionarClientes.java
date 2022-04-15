@@ -244,15 +244,25 @@ public class GestionarClientes extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
+        //Validando si hay campos vacios
+        if( txtNombre.getText().isEmpty() || txtDocumento.getText().isEmpty()
+                || txtEdad.getText().isEmpty() || txtEstrato.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
+            return;
+        }
+
+        //Obteniendo los datos del usuario
         String nombre = txtNombre.getText();
         int documento = Integer.parseInt(txtDocumento.getText());
         int edad = Integer.parseInt(txtEdad.getText());
         int estrato = Integer.parseInt(txtEstrato.getText());
-        int valorDataCredito = VistaBanco.CB.generarValorDataCredito();
         
-        Cliente cliente = new Cliente( valorDataCredito,estrato, nombre, documento, edad );
-        boolean añadido = VistaBanco.CB.añadirCliente(cliente);
+        //Creando el cliente
+        Cliente cliente = new Cliente( estrato, nombre, documento, edad );
         
+        //Validando si se pudo añadir el cliente
+        boolean añadido = VistaBanco.CB.añadirCliente(cliente);      
         if( añadido ){
             JOptionPane.showMessageDialog(null, "Cliente con el documento " + documento + " añadido");
             limpiarInputs();
@@ -266,9 +276,17 @@ public class GestionarClientes extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        //Validando si no hay documento digitado
+        if( txtDocumento.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Para buscar se necesita el documento");
+            return;
+        }
+        
+        //Obteniendo los datos del usuario
         int documento = Integer.parseInt(txtDocumento.getText());
         Cliente cliente = VistaBanco.CB.buscarCliente(documento);
         
+        //Inyectando los datos del cliente en los textFields
         if( cliente != null ){
             txtNombre.setText(cliente.getNombre());
             txtEdad.setText(String.valueOf(cliente.getEdad()));
@@ -284,13 +302,24 @@ public class GestionarClientes extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        //Validando si hay campos vacios
+        if( txtNombre.getText().isEmpty() || txtDocumento.getText().isEmpty()
+                || txtEdad.getText().isEmpty() || txtEstrato.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
+            return;
+        }
+        
+        //Obteniendo los datos del usuario
         String nombre = txtNombre.getText();
         int documento = Integer.parseInt(txtDocumento.getText());
         int edad = Integer.parseInt(txtEdad.getText());
         int estrato = Integer.parseInt(txtEstrato.getText());
-        int valorDataCredito = VistaBanco.CB.generarValorDataCredito();
         
-        Cliente cliente = new Cliente( valorDataCredito,estrato, nombre, documento, edad );
+        //Creando el cliente
+        Cliente cliente = new Cliente( estrato, nombre, documento, edad );
+        
+        //Validando si se pudo editar la informacion del cliente
         boolean editado = VistaBanco.CB.editarCliente(cliente);
         
         if( editado ){
@@ -308,9 +337,17 @@ public class GestionarClientes extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        int documento = Integer.parseInt(txtDocumento.getText());
-        boolean eliminado = VistaBanco.CB.eliminarCliente(documento);
+        //Validando si no hay documento digitado
+        if( txtDocumento.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Para eliminar se necesita el documento");
+            return;
+        }
         
+        //Obteniendo el documento
+        int documento = Integer.parseInt(txtDocumento.getText());
+        
+        //Validando si se pudo eliminar el cliente
+        boolean eliminado = VistaBanco.CB.eliminarCliente(documento);       
         if( eliminado ){
             JOptionPane.showMessageDialog(null, "Cliente con el documento " + documento + " eliminado");
             limpiarInputs();
@@ -337,8 +374,7 @@ public class GestionarClientes extends javax.swing.JFrame {
      * @param evt 
      */
     private void txtDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDocumentoKeyTyped
-        VistaBanco.validacion.soloNumeros(evt);
-        
+        VistaBanco.validacion.soloNumeros(evt);    
     }//GEN-LAST:event_txtDocumentoKeyTyped
 
     /**

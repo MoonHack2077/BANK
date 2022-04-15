@@ -19,6 +19,8 @@ import Vistas.VistaBanco;
 public class GestionarCreditos extends javax.swing.JFrame {
 
     private Cliente cliente;
+    
+    //Instancando los controladores
     public static ControladorCH CH = new ControladorCH(); //CH se usa como abreviacion de ControladorCH
     public static ControladorCL CL = new ControladorCL(); //Cl se usa como abreviacion de ControladorCL
     
@@ -39,6 +41,7 @@ public class GestionarCreditos extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.cliente = cliente;
         
+        //Determinando la usabilidad de los botones
         if( !cliente.hasCreditoActivo() ){
             btnConsultarCuotasRestantes.setEnabled(false);
             btnAbonarCuota.setEnabled(false);

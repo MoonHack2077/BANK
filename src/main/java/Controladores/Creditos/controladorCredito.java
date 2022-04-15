@@ -12,10 +12,8 @@ import Modelos.Cuota.Cuota;
  * @author USER
  */
 public abstract class ControladorCredito {
-    public ControladorCredito( ){
-    }
-    
-    
+    public ControladorCredito( ){}
+       
     /**
      * Metodo para calcular el valor total de la cuota
      */
@@ -28,7 +26,7 @@ public abstract class ControladorCredito {
      * @return true si se abonó, de lo contrario false
      */
     public boolean abonarCuota(Credito credito, Cuota cuota){
-        int contador = 0;
+        int contador = 1;
         Cuota[] cuotas = credito.getCuotas();
         
         for (int i = 0; i < cuotas.length; i++) {
@@ -46,7 +44,7 @@ public abstract class ControladorCredito {
     
     /**
      * Metodo para saber la cantidad de cuotas restantes
-     * @return la cantidad de cuotas restantes
+     * @return true si aun faltan cuotas, de lo contrario false
      */
     public boolean calcularCuotasRestantes(Credito credito){
         int contadorAbonadas = 0;
@@ -69,22 +67,21 @@ public abstract class ControladorCredito {
 
     /**
      * Metodo para recopilar la info de las cuotas abonadas
-     * @return la cantidad de cuotas restantes
+     * @return la cantidad de cuotas restantesun String con los datos de las cuotas abonadas
      */
-    public String XDDD(Credito credito){
+    public String obtenerCuotasAbonadas(Credito credito){
         Cuota[] cuotas = credito.getCuotas();
-        String cadena = "";
+        String infoCuotas = "";
         for (int i = 0; i < cuotas.length; i++) {
             if(cuotas[i] != null){
-                cadena += 
-            "Numero de cuota: "+ String.valueOf(cuotas[i].getNumeroCuota())+ "   " +
-            "Fecha de cancelacion: "+String.valueOf(cuotas[i].getFechaCancelacion())+ "   " +
-            "Valor de la cuota: "+String.valueOf(credito.getValorCuota())+ "   " +
-            "Monto abonado: "+ String.valueOf(cuotas[i].getMontoAbonado())+
-            "\n\n" ;
+                infoCuotas += 
+            "Numero de cuota: "+ String.valueOf(cuotas[i].getNumeroCuota())+ "\n" +
+            "Fecha de cancelacion: "+ cuotas[i].getFechaCancelacion().toString()+ "\n" +
+            "Valor de la cuota: "+String.valueOf(credito.getValorCuota())+ "\n" +
+            "Monto abonado: "+ String.valueOf(cuotas[i].getMontoAbonado())+ "\n\n\n";
             }
         }
         
-        return cadena;
+        return infoCuotas;
     }
 }

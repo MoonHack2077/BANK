@@ -13,12 +13,19 @@ import java.util.ArrayList;
  * @author USER
  */
 public class ControladorCL extends ControladorCredito {
-
-  
+ 
     private ArrayList<CreditoLibre> creditosLibres;
     
     public ControladorCL(){
         creditosLibres = new ArrayList<>();
+    }
+        
+    /**
+     * Metodo para generar un valor de data credito entre 250 y 400
+     * @return un numero entre 250 y 400
+     */
+    public int generarValorDataCredito(){
+        return (int)Math.floor(Math.random()*( 400 - 250 + 1 ) + 250 );
     }
     
     /**
@@ -59,16 +66,16 @@ public class ControladorCL extends ControladorCredito {
     @Override
     public void calcularValorCuota(Credito credito){
         CreditoLibre creditoL = buscarCreditoL(credito.getNumeroDeContrato());
-        double soli = creditoL.getMontoTotal();
+        double valorSolicitado = creditoL.getMontoTotal();
         int valorData = creditoL.getValorDataCredito();
         double valorTotal = creditoL.getValorCuota();
         
         if( valorData>=250 && valorData<=320 ){ 
-            soli= (soli*1.6)/100;
+            valorSolicitado = ( valorSolicitado * 1.6 ) / 100;
         }
-        else soli= (soli*1.9)/100;
+        else valorSolicitado = ( valorSolicitado * 1.9 ) / 100;
         
-        valorTotal+=soli;
+        valorTotal += valorSolicitado;
         creditoL.setValorCuota(valorTotal);
     }
 
@@ -77,13 +84,6 @@ public class ControladorCL extends ControladorCredito {
      */
     public ArrayList<CreditoLibre> getCreditosLibres() {
         return creditosLibres;
-    }
-
-    /**
-     * @param creditosLibres the creditosLibres to set
-     */
-    public void setCreditosLibres(ArrayList<CreditoLibre> creditosLibres) {
-        this.creditosLibres = creditosLibres;
     }
     
 }

@@ -8,12 +8,12 @@ package Modelos.Datos;
  *
  * @author USER
  */
-public class Datos {
+public class DatosClienteDomicilio {
     protected String nombre;
     protected int estrato;
     protected int documento;
     
-    public Datos ( int estrato, String nombre, int documento ){
+    public DatosClienteDomicilio ( int estrato, String nombre, int documento ){
         this.nombre = nombre;
         this.estrato = estrato;
         this.documento = documento;

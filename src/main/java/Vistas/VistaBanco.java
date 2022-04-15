@@ -16,10 +16,10 @@ import javax.swing.JOptionPane;
 public class VistaBanco extends javax.swing.JFrame {
 
     //Instanciando el controlador del banco
-    public static ControladorBanco CB = new ControladorBanco(); //CB => Abreviacion de controlador banco
+    public static ControladorBanco CB = new ControladorBanco(); // CB => Abreviacion de controlador banco
     
     //Instanciando la validacion
-    public static Validacion validacion = new Validacion();
+    public static Validacion validacion = new Validacion(); 
     
     /**
      * Creates new form VistaBanco
@@ -132,7 +132,7 @@ public class VistaBanco extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClientesActionPerformed
 
     /**
-     * Metodo para saber si se cambia de ventana
+     * Metodo para ir a la ventana para gestionar los creditos
      * @param evt 
      */
     private void btnCreditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreditosActionPerformed

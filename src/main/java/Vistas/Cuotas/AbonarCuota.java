@@ -8,6 +8,7 @@ import Modelos.Creditos.Credito;
 import Modelos.Cuota.Cuota;
 import Modelos.Datos.Cliente;
 import Vistas.Creditos.GestionarCreditos;
+import Vistas.VistaBanco;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -19,7 +20,6 @@ public class AbonarCuota extends javax.swing.JFrame {
 
     private Cliente cliente;
     private Credito credito;
-    private CuotasAbonadas CA = new CuotasAbonadas();
     /**
      * Creates new form AbonarCuota
      */
@@ -36,6 +36,8 @@ public class AbonarCuota extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.cliente = cliente;
         this.credito = cliente.getCredito();
+        
+        //Insertando datos para guiar al cliente
         lblCliente.setText(cliente.getNombre());
         lblValorCancelar.setText(String.valueOf(cliente.getCredito().getValorCuota()));
     }
@@ -76,6 +78,12 @@ public class AbonarCuota extends javax.swing.JFrame {
             }
         });
 
+        txtMontoCancelado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMontoCanceladoKeyTyped(evt);
+            }
+        });
+
         jLabel2.setText("Monto para abonar:");
 
         jLabel3.setText("Cliente:");
@@ -87,6 +95,16 @@ public class AbonarCuota extends javax.swing.JFrame {
         cbxMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mes", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
         txtAño.setText("AÑO");
+        txtAño.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtAñoFocusGained(evt);
+            }
+        });
+        txtAño.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAñoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -178,48 +196,122 @@ public class AbonarCuota extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Metodo para reiniciar los textFields y comboboxes cuando se abone una cuota
+     */
+    private void limpiarInputs(){
+        txtAño.setText("AÑO");
+        txtMontoCancelado.setText("");
+        cbxDia.setSelectedItem("Dia");
+        cbxMes.setSelectedItem("Mes");
+    }
+    
+    /**
+     * Metodo para volver a la ventana de gestionar creditos
+     * @param evt 
+     */
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         GestionarCreditos gestionar = new GestionarCreditos(this.cliente);
         gestionar.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
-
+   
+    /**
+     * Metodo para abonar la cuota por medio del boton crear
+     * @param evt 
+     */
     private void btnAbonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbonarActionPerformed
+        //Validando la fecha
+        if( cbxDia.getSelectedIndex() == 0 || cbxMes.getSelectedIndex() == 0  ){
+            JOptionPane.showMessageDialog(null, "Fecha no valida");
+            return;
+        }
+
+        // Validando si hay campos vacios
+        if( txtMontoCancelado.getText().isEmpty() || txtAño.getText().isEmpty() ){
+            JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
+            return;
+        }
+
         //Obteniendo el monto
         int monto = Integer.parseInt(txtMontoCancelado.getText());
+        
+        //Validando si el monto es diferente al valor de la cuota
         if( monto != cliente.getCredito().getValorCuota() ){
             JOptionPane.showMessageDialog(null, "El monto a abonar debe ser lo mismo que el valor a cancelar");
             return;
         }
-        
-        
-        //Parseando los datos a enteros para crear la fecha
+              
+        //Parseando los datos a enteros para crear la fecha de cancelación
         int dia = Integer.parseInt(cbxDia.getSelectedItem().toString());
         int mes = Integer.parseInt(cbxMes.getSelectedItem().toString());
         int anio = Integer.parseInt(txtAño.getText());
         
-        //Creando la fecha de solicitud
-        Date fechaCancelacion = new Date(anio, mes, dia);
+        //En caso de que el mes sea 2 (febrero), validar si los dias y el año corresponden
+        if( mes == 2 && dia >= 30 ){
+            JOptionPane.showMessageDialog(null, "Febrero no tiene esos dias");
+            return;
+        }
         
+        //En caso de que el mes sea 2 (febrero), validar si es un año bisiesto
+        if( mes == 2 && dia == 29 && anio % 4 != 0 ){
+            JOptionPane.showMessageDialog(null, "Febrero no tiene esos dias");
+            return;
+        }
+        
+        // los meses 4, 6, 9 y 11 solo tienen 30 dias
+        if( (mes == 4 || mes == 6 || mes == 9 || mes == 11 ) && ( dia == 31 ) ){
+            JOptionPane.showMessageDialog(null, "El mes seleccionado no tiene esa cantidad de dias");
+            return;
+        }
+        
+        //Creando la fecha de solicitud
+        Date fechaCancelacion = new Date(anio, mes-1, dia);
+        
+        //Creando la cuota
         Cuota cuota = new Cuota(fechaCancelacion, monto);
         
-        boolean xd;
-        if( this.cliente.getCredito().getTipo().equals("Hipotecario") ){
-            GestionarCreditos.CH.abonarCuota(this.credito, cuota);
-            xd = GestionarCreditos.CH.calcularCuotasRestantes(this.credito);
-        }else{
-            GestionarCreditos.CL.abonarCuota(this.credito, cuota);
-            xd = GestionarCreditos.CL.calcularCuotasRestantes(this.credito);
-        }
+        //Abonando la cuota
+        GestionarCreditos.CL.abonarCuota(this.credito, cuota);
         
-        if(xd){
+        //Calculando la cantidad de cuotas restantes
+        boolean calculadas = GestionarCreditos.CL.calcularCuotasRestantes(this.credito);              
+        if(calculadas){
             JOptionPane.showMessageDialog(null, "Se ha abonado la cuota!!!");
+            limpiarInputs();
         }else{
-            JOptionPane.showMessageDialog(null, "Ha sido tu ultima cuota, gracias por confiar en nosotros");
-        }
-        
-        //CA.ponerCuota(detalles);
+            JOptionPane.showMessageDialog(null, "Ha sido tu ultima cuota " 
+                    +  this.cliente.getNombre().toUpperCase() 
+                    + " gracias por confiar en nosotros");
+        }      
     }//GEN-LAST:event_btnAbonarActionPerformed
+
+    
+    /******************** EVENTOS ********************/
+       
+    /**
+     * Metodo para que se le quite el "placeholder" al textField del año
+     * @param evt 
+     */
+    private void txtAñoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAñoFocusGained
+        if(txtAño.getText().equals("AÑO")) txtAño.setText("");
+    }//GEN-LAST:event_txtAñoFocusGained
+
+    /**
+     * Metodo para que el usuario solo digite numeros en el textField del año
+     * @param evt 
+     */
+    private void txtAñoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAñoKeyTyped
+        VistaBanco.validacion.soloNumeros(evt);
+    }//GEN-LAST:event_txtAñoKeyTyped
+
+    /**
+     * Metodo para que el usuario solo digite numeros en el textField del monto a cancelar
+     * @param evt 
+     */
+    private void txtMontoCanceladoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoCanceladoKeyTyped
+        VistaBanco.validacion.soloNumeros(evt);
+    }//GEN-LAST:event_txtMontoCanceladoKeyTyped
 
     /**
      * @param args the command line arguments

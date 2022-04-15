@@ -18,13 +18,7 @@ public class ControladorCH extends ControladorCredito{
     
     public ControladorCH(){
         creditosHipotecarios = new ArrayList<>();
-    }
-    
-    /*
-    *****  CREDITO HIPOTECARIO
-    *creditoH se usa como abreviacion de credito Hipotecario
-    */
-    
+    }   
     
     /**
      * Metodo para saber si un credito hipotecario ya está almacenado
@@ -63,17 +57,17 @@ public class ControladorCH extends ControladorCredito{
     @Override
     public void calcularValorCuota(Credito credito){
         CreditoHipotecario creditoH = buscarCreditoH(credito.getNumeroDeContrato());
-        double soli = creditoH.getMontoTotal();
+        double valorSolicitado = creditoH.getMontoTotal();
         int estrato = creditoH.getDomicilio().getEstrato();
         double valorTotal = creditoH.getValorCuota();
         
         if( estrato<=3 ){ 
-            soli = (soli*1.2)/100;
+            valorSolicitado = ( valorSolicitado * 1.2 ) / 100;
         }
         else { 
-            soli = (soli*1.4)/100;
+            valorSolicitado = ( valorSolicitado * 1.4 ) / 100;
         }
-        valorTotal+=soli;
+        valorTotal += valorSolicitado;
         creditoH.setValorCuota(valorTotal);
     }
     
