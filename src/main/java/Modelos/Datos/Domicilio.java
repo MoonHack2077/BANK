@@ -8,13 +8,15 @@ package Modelos.Datos;
  *
  * @author USER
  */
-public class Domicilio extends Datos {
+public class Domicilio extends DatosClienteDomicilio {
+    private String direccion;
     private double avaluoComercial;
     
     public Domicilio( double avaluoComercial, String direccion, int estrato, 
             String nombre, int documentoTitular )
     {
-        super(direccion, estrato, nombre, documentoTitular);
+        super(estrato, nombre, documentoTitular);
+        this.direccion = direccion;
         this.avaluoComercial = avaluoComercial;
     }
 
@@ -30,5 +32,19 @@ public class Domicilio extends Datos {
      */
     public void setAvaluoComercial(double avaluoComercial) {
         this.avaluoComercial = avaluoComercial;
+    }
+
+    /**
+     * @return the direccion
+     */
+    public String getDireccion() {
+        return direccion;
+    }
+
+    /**
+     * @param direccion the direccion to set
+     */
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 }

@@ -17,9 +17,9 @@ public class CreditoHipotecario extends Credito {
     private Domicilio domicilio;
     
     public CreditoHipotecario(int numeroDeContrato, double montoTotal, int cantidadCuotas, 
-            Cliente clienteSolicitante, Date fechaDeSolicitud, Domicilio domicilio )
+            Cliente clienteSolicitante, Date fechaDeSolicitud, Domicilio domicilio, String tipo )
     {
-        super(numeroDeContrato, montoTotal, cantidadCuotas, clienteSolicitante);
+        super(numeroDeContrato, montoTotal, cantidadCuotas, clienteSolicitante, tipo);
         this.fechaDeSolicitud = fechaDeSolicitud;
         this.domicilio = domicilio;
     }

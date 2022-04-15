@@ -4,6 +4,7 @@
  */
 package Modelos.Creditos;
 
+import Modelos.Cuota.Cuota;
 import Modelos.Datos.Cliente;
 
 /**
@@ -12,19 +13,25 @@ import Modelos.Datos.Cliente;
  */
 public class Credito {
    protected Cliente clienteSolicitante;
-   protected int numeroDeContrato;
-   protected int cantidadCuotas;
+   protected Cuota[] cuotas;
+   protected String tipo;
    protected double montoTotal;
    protected double valorCuota;
+   protected int numeroDeContrato;
+   protected int cantidadCuotas;
+   protected int cuotasRestantes;
+   protected int cuotasAbonadas;
    
    public Credito( int numeroDeContrato, double montoTotal, int cantidadCuotas, 
-           Cliente clienteSolicitante )
+           Cliente clienteSolicitante, String tipo )
    {
     this.numeroDeContrato = numeroDeContrato;
+    this.cuotas = new Cuota[cantidadCuotas];
     this.montoTotal = montoTotal;
     this.cantidadCuotas = cantidadCuotas;
     this.valorCuota = montoTotal/cantidadCuotas;
     this.clienteSolicitante = clienteSolicitante;
+    this.tipo = tipo;
    }
 
    
@@ -96,5 +103,55 @@ public class Credito {
      */
     public void setValorCuota(double valorCuota) {
         this.valorCuota = valorCuota;
+    }
+    
+    
+    /**
+     * @return the cuotas
+     */
+    public Cuota[] getCuotas() {
+        return cuotas;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    /**
+     * @return the cuotasRestantes
+     */
+    public int getCuotasRestantes() {
+        return cuotasRestantes;
+    }
+
+    /**
+     * @param cuotasRestantes the cuotasRestantes to set
+     */
+    public void setCuotasRestantes(int cuotasRestantes) {
+        this.cuotasRestantes = cuotasRestantes;
+    }
+
+    /**
+     * @return the cuotasAbonadas
+     */
+    public int getCuotasAbonadas() {
+        return cuotasAbonadas;
+    }
+
+    /**
+     * @param cuotasAbonadas the cuotasAbonadas to set
+     */
+    public void setCuotasAbonadas(int cuotasAbonadas) {
+        this.cuotasAbonadas = cuotasAbonadas;
     }
 }

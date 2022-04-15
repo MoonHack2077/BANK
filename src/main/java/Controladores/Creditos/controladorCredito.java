@@ -4,7 +4,6 @@
  */
 package Controladores.Creditos;
 
-import Controladores.ControladorBanco;
 import Modelos.Creditos.Credito;
 import Modelos.Cuota.Cuota;
 
@@ -13,23 +12,12 @@ import Modelos.Cuota.Cuota;
  * @author USER
  */
 public abstract class ControladorCredito {
-    private Cuota[] cuotas;
-    private double valorSolicitado;
-    private int numeroContrato;
-    protected ControladorBanco cB;
-    
-    public ControladorCredito( Credito credito ){
-        cuotas = new Cuota[credito.getCantidadCuotas()];
-        this.valorSolicitado = credito.getMontoTotal();
-        this.numeroContrato = credito.getNumeroDeContrato();
-        cB = new ControladorBanco();
-    }
-    
-    
+    public ControladorCredito( ){}
+       
     /**
      * Metodo para calcular el valor total de la cuota
      */
-    public abstract double calcularValorCuota();
+    public abstract void calcularValorCuota(Credito credito);
     
     
     /**
@@ -37,14 +25,16 @@ public abstract class ControladorCredito {
      * @param cuota
      * @return true si se abonó, de lo contrario false
      */
-    public boolean abonarCuota(Cuota cuota){
-        
-        //LOOK OUT THIS PART
-        if( cuota.getMontoAbonado() < this.calcularValorCuota() ) return false;
+    public boolean abonarCuota(Credito credito, Cuota cuota){
+        int contador = 1;
+        Cuota[] cuotas = credito.getCuotas();
         
         for (int i = 0; i < cuotas.length; i++) {
+            if( cuotas[i] != null ) contador++;
+            
             if( cuotas[i] == null ){
                 cuotas[i] = cuota;
+                cuotas[i].setNumeroCuota(contador);
                 return true;
             } 
         }
@@ -54,58 +44,44 @@ public abstract class ControladorCredito {
     
     /**
      * Metodo para saber la cantidad de cuotas restantes
-     * @return la cantidad de cuotas restantes
+     * @return true si aun faltan cuotas, de lo contrario false
      */
-    public int cuotasRestantes(){
-        int contador = 0;
+    public boolean calcularCuotasRestantes(Credito credito){
+        int contadorAbonadas = 0;
+        int contadorRestantes = 0;
+        Cuota[] cuotas = credito.getCuotas();
         for (int i = 0; i < cuotas.length; i++) {
-            if( cuotas[i] == null ){
-                contador++;
-            } 
+            if( cuotas[i] == null ) contadorRestantes++;
+            else contadorAbonadas++;
         }
         
-        return contador;
+        if( contadorRestantes==0 ){
+            credito.getClienteSolicitante().setCreditoActivo(false);
+            credito.getClienteSolicitante().setCredito(null);
+            return false;
+        }
+        credito.setCuotasRestantes(contadorRestantes);
+        credito.setCuotasAbonadas(contadorAbonadas);
+        return true;
     }
 
     /**
-     * @return the cuotas
+     * Metodo para recopilar la info de las cuotas abonadas
+     * @return la cantidad de cuotas restantesun String con los datos de las cuotas abonadas
      */
-    public Cuota[] getCuotas() {
-        return cuotas;
-    }
-
-    /**
-     * @param cuotas the cuotas to set
-     */
-    public void setCuotas(Cuota[] cuotas) {
-        this.cuotas = cuotas;
-    }
-
-    /**
-     * @return the valorSolicitado
-     */
-    public double getValorSolicitado() {
-        return valorSolicitado;
-    }
-
-    /**
-     * @param valorSolicitado the valorSolicitado to set
-     */
-    public void setValorSolicitado(double valorSolicitado) {
-        this.valorSolicitado = valorSolicitado;
-    }
-
-    /**
-     * @return the numeroContrato
-     */
-    public int getNumeroContrato() {
-        return numeroContrato;
-    }
-
-    /**
-     * @param numeroContrato the numeroContrato to set
-     */
-    public void setNumeroContrato(int numeroContrato) {
-        this.numeroContrato = numeroContrato;
+    public String obtenerCuotasAbonadas(Credito credito){
+        Cuota[] cuotas = credito.getCuotas();
+        String infoCuotas = "";
+        for (int i = 0; i < cuotas.length; i++) {
+            if(cuotas[i] != null){
+                infoCuotas += 
+            "Numero de cuota: "+ String.valueOf(cuotas[i].getNumeroCuota())+ "\n" +
+            "Fecha de cancelacion: "+ cuotas[i].getFechaCancelacion().toString()+ "\n" +
+            "Valor de la cuota: "+String.valueOf(credito.getValorCuota())+ "\n" +
+            "Monto abonado: "+ String.valueOf(cuotas[i].getMontoAbonado())+ "\n\n\n";
+            }
+        }
+        
+        return infoCuotas;
     }
 }
