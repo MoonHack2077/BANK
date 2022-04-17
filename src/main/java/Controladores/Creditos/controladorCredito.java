@@ -16,13 +16,14 @@ public abstract class ControladorCredito {
        
     /**
      * Metodo para calcular el valor total de la cuota
+     * @param credito
      */
     public abstract void calcularValorCuota(Credito credito);
     
     
     /**
      * Metodo para abonar una cuota
-     * @param cuota
+     * @param credito, cuota
      * @return true si se abonó, de lo contrario false
      */
     public boolean abonarCuota(Credito credito, Cuota cuota){
@@ -44,6 +45,7 @@ public abstract class ControladorCredito {
     
     /**
      * Metodo para saber la cantidad de cuotas restantes
+     * @param credito
      * @return true si aun faltan cuotas, de lo contrario false
      */
     public boolean calcularCuotasRestantes(Credito credito){
@@ -67,6 +69,7 @@ public abstract class ControladorCredito {
 
     /**
      * Metodo para recopilar la info de las cuotas abonadas
+     * @param credito
      * @return la cantidad de cuotas restantesun String con los datos de las cuotas abonadas
      */
     public String obtenerCuotasAbonadas(Credito credito){
