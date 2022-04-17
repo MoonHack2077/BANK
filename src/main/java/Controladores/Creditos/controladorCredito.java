@@ -70,7 +70,7 @@ public abstract class ControladorCredito {
     /**
      * Metodo para recopilar la info de las cuotas abonadas
      * @param credito
-     * @return la cantidad de cuotas restantesun String con los datos de las cuotas abonadas
+     * @return Un String con los datos de las cuotas abonadas
      */
     public String obtenerCuotasAbonadas(Credito credito){
         Cuota[] cuotas = credito.getCuotas();
